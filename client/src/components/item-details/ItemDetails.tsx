@@ -43,7 +43,7 @@ export default function ItemDetails() {
 
       {/* LEFT */}
       <div className={styles.left}>
-        <div className={styles.mainImage}>IMG</div>
+        <div className={styles.mainImage}></div>
         <div className={styles.sideImages}>
           <div className={styles.sideImage}></div>
           <div className={styles.sideImage}></div>
