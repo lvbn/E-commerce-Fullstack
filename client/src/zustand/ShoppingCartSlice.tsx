@@ -11,6 +11,7 @@ type ShoppingCartAction = {
   increaseQuantity: (newItem: CartItemType) => void
   decreaseQuantity: (existingItem: CartItemType) => void
   removeFromCart: (existingItemID: number) => void
+  toggleCart: () => void
   openCart: () => void
   closeCart: () => void
 }
@@ -63,6 +64,12 @@ export const useCartSlice = create<ShoppingCartState & ShoppingCartAction>()((se
   removeFromCart: (existingItemID) => set((state) => {
     return { cartItems: state.cartItems.filter(item => item.id != existingItemID) }
   }),
+
+  toggleCart: () => set((state) => {
+    if (state.isOpen === false) return { isOpen: true }
+    else return { isOpen: false }
+  }
+),
 
   openCart: () => set({ isOpen: true }),
   closeCart: () => set({ isOpen: false }),
