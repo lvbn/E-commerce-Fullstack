@@ -4,6 +4,30 @@ import { useCartSlice } from '../../zustand/ShoppingCartSlice'
 import { CartItemType } from '../../models/models'
 import CartItem from '../cart-item/CartItem'
 
+import { motion } from "framer-motion";
+
+const container = {
+  hidden: { opacity: 0, scale: 0.99 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.4,
+      ease: [0, 0.71, 0.2, 1.01],
+      delayChildren: 0.1,
+      staggerChildren: 0.07
+    }
+  }
+};
+
+const item = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1
+  }
+};
+
 export default function ShoppingCart() {
   const cartItems = useCartSlice((state) => state.cartItems)
   const isOpen = useCartSlice((state) => state.isOpen)
@@ -12,7 +36,12 @@ export default function ShoppingCart() {
   return (
     <>
       {isOpen &&
-        <div className={styles.container}>
+        <motion.div
+          className={`${styles.container} ${container}`}
+          variants={container}
+          initial="hidden"
+          animate="visible"
+        >
 
           <div className={styles.cartHeader}>
             <h1>Cart</h1>
@@ -22,13 +51,18 @@ export default function ShoppingCart() {
             >+</h1>
           </div>
 
-          <ul>
+          <motion.ul
+            className={`${container}`}
+            variants={container}
+            initial="hidden"
+            animate="visible"
+          >
             {cartItems.map((cartItem: CartItemType) => (
-              <li key={cartItem.id}>
+              <motion.li key={cartItem.id} variants={item}>
                 <CartItem cartItem={cartItem} />
-              </li>
+              </motion.li>
             ))}
-          </ul>
+          </motion.ul>
 
           <div className={styles.cartFooter}>
             <div className={styles.total}>
@@ -47,7 +81,7 @@ export default function ShoppingCart() {
             </div>
           </div>
 
-        </div>
+        </motion.div>
       }
     </>
   )
