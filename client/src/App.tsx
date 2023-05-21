@@ -58,8 +58,8 @@ function App() {
       <div
         id="detail"
         onClick={() => {
-          closeMenu(),
-          closeCart()
+          closeMenu()
+          // closeCart()
         }}
       >
         <Outlet />
