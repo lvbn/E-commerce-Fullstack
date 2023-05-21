@@ -3,6 +3,8 @@
 /* https://stackoverflow.com/questions/52417889/setting-minimum-and-maximum-number-of-columns-using-css-grid */
 
 .storeItems {
+  list-style-type: none;
+  
   box-sizing: border-box;
   width: 100vw;
   height: calc(100vh - 65px);

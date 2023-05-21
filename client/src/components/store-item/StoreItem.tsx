@@ -4,7 +4,7 @@ import { Product } from '../../models/models'
 import { useNavigate } from 'react-router-dom'
 
 type Props = {
-  key: number,
+  // key: number,
   product: Product
 }
 

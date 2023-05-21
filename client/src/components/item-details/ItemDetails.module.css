@@ -68,27 +68,33 @@
 .sizes {
   display: flex;
   justify-content: space-between;
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 0;
 }
 
-.sizes > div {
+.sizes > button {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
 
+  box-sizing: border-box;
   height: 70px;
   width: 20%;
 
   background-color: #C4DDD4;
+  color: #118259;
   border-radius: 4px;
+  outline: none;
 
   cursor: pointer;
 }
 
 /* not yet implemented 👇 */
-.selected {
+.sizes > .active {
   border: 1px solid #118259;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s ease;
 }
 
 .addToCart {

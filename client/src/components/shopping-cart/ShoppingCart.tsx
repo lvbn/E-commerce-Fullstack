@@ -45,10 +45,16 @@ export default function ShoppingCart() {
 
           <div className={styles.cartHeader}>
             <h1>Cart</h1>
-            <h1
+            <motion.h1
               className={styles.closeCart}
               onClick={() => { closeCart() }}
-            >+</h1>
+              whileHover={{ scale: 1.2, rotate: 90 }}
+              whileTap={{
+                scale: 0.8,
+                rotate: -90,
+                borderRadius: "100%"
+              }}
+            >+</motion.h1>
           </div>
 
           <motion.ul

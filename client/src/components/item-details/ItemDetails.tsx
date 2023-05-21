@@ -2,17 +2,54 @@ import styles from './ItemDetails.module.css'
 import { useCartSlice } from '../../zustand/ShoppingCartSlice'
 import mock from '../../mock-data/mock.json'
 import { useParams } from 'react-router-dom'
-import { Product, ProductSize } from '../../models/models'
+import { Product } from '../../models/models'
 import { useState } from 'react'
 
+import { motion } from "framer-motion";
+
+const container = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.4,
+      ease: [0, 0.71, 0.2, 1.01],
+      delayChildren: 0.1,
+      staggerChildren: 0.07
+    }
+  }
+};
+
+const sizes = {
+  activeSize: { size: '' },
+  sizes: [{ size: 'S' }, { size: 'M' }, { size: 'L' }, { size: 'XL' }]
+}
+
 export default function ItemDetails() {
+
+  const [sizeState, setSizeState] = useState(sizes)
+
+  // handle size selection
+  const handleSizeSelection = (index: number) => {
+    setSizeState({
+      ...sizeState, activeSize: sizeState?.sizes[index]
+    })
+  }
+
+  const toggleSizeSelection = (index: number) => {
+    if (sizeState.activeSize === sizeState.sizes[index]) {
+      return `${styles.active}`
+    } else {
+      return ''
+    }
+  }
 
   const addItem = useCartSlice((state) => state.addItem)
   const openCart = useCartSlice((state) => state.openCart)
 
   // URL param
   const param = useParams()
-  console.log(param.id)
 
   // URL query and fetch the DB
   const data = JSON.parse(JSON.stringify(mock))
@@ -21,25 +58,13 @@ export default function ItemDetails() {
 
   const [item, setItem] = useState(product)
 
-  // handle size selection
-  const handleSizeSelection = (e: React.SyntheticEvent) => {
-    const size = e.currentTarget.textContent as ProductSize // refactor to make more strict type
-    // console.log('PRODUCT:', {...product, size: size})
-    // return {...product, size: size}
-    if (size && product) {
-      setItem({...product, size: size})
-
-      // change this later to useRef
-      const sizes = document.querySelectorAll('.size')
-      sizes.forEach(s => {
-        if (s.textContent === size) s.classList.add('selected')
-        else s.classList.remove('selected')
-      })
-    }
-  }
-
   return (
-    <div className={styles.container}>
+    <motion.div
+      className={`${styles.container} ${container}`}
+      variants={container}
+      initial="hidden"
+      animate="visible"
+    >
 
       {/* LEFT */}
       <div className={styles.left}>
@@ -58,17 +83,25 @@ export default function ItemDetails() {
         <h4 className={styles.description}>{product?.description}</h4>
         <h4 className={styles.price}>{product?.price}</h4>
 
+        {/* https://www.youtube.com/watch?v=-Lx-YlI9hlY */}
         <div className={styles.sizes}>
-          <div className={styles.size} onClick={handleSizeSelection}>S</div>
-          <div className={styles.size} onClick={handleSizeSelection}>M</div>
-          <div className={styles.size} onClick={handleSizeSelection}>L</div>
-          <div className={styles.size} onClick={handleSizeSelection}>XL</div>
+          {
+            sizes.sizes.map((size, index) => (
+              <button
+                key={index}
+                className={toggleSizeSelection(index)}
+                onClick={() => handleSizeSelection(index)}
+              >
+                {size.size}
+              </button>
+            ))
+          }
         </div>
 
         <div
           className={styles.addToCart}
           onClick={() => {
-            if(item) {
+            if (item) {
               addItem(item);
               openCart();
             }
@@ -77,6 +110,6 @@ export default function ItemDetails() {
         </div>
       </div>
 
-    </div>
+    </motion.div>
   )
 }
