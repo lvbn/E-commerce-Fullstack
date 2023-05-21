@@ -2,7 +2,7 @@ import styles from './ItemDetails.module.css'
 import { useCartSlice } from '../../zustand/ShoppingCartSlice'
 import mock from '../../mock-data/mock.json'
 import { useParams } from 'react-router-dom'
-import { Product } from '../../models/models'
+import { Product, Sizes, ProductSize } from '../../models/models'
 import { useState } from 'react'
 
 import { motion } from "framer-motion";
@@ -21,29 +21,14 @@ const container = {
   }
 };
 
-const sizes = {
-  activeSize: { size: '' },
+
+
+const sizes: Sizes = {
+  activeSize: { size: 'M' },
   sizes: [{ size: 'S' }, { size: 'M' }, { size: 'L' }, { size: 'XL' }]
 }
 
 export default function ItemDetails() {
-
-  const [sizeState, setSizeState] = useState(sizes)
-
-  // handle size selection
-  const handleSizeSelection = (index: number) => {
-    setSizeState({
-      ...sizeState, activeSize: sizeState?.sizes[index]
-    })
-  }
-
-  const toggleSizeSelection = (index: number) => {
-    if (sizeState.activeSize === sizeState.sizes[index]) {
-      return `${styles.active}`
-    } else {
-      return ''
-    }
-  }
 
   const addItem = useCartSlice((state) => state.addItem)
   const openCart = useCartSlice((state) => state.openCart)
@@ -57,6 +42,28 @@ export default function ItemDetails() {
   let product = products.find(product => String(product.id) === param.id)
 
   const [item, setItem] = useState(product)
+  const [sizeState, setSizeState] = useState(sizes)
+
+  // handle size selection
+  const handleSizeSelection = (e: React.SyntheticEvent, index: number) => {
+    setSizeState({
+      ...sizeState, activeSize: sizeState?.sizes[index]
+    })
+    if (item) {
+      const selectedSize = e.currentTarget.textContent as ProductSize
+      setItem({
+        ...item, size: selectedSize
+      })
+    }
+  }
+
+  const activeClass = (index: number) => {
+    if (sizeState.activeSize === sizeState.sizes[index]) {
+      return `${styles.active}`
+    } else {
+      return ''
+    }
+  }
 
   return (
     <motion.div
@@ -89,8 +96,8 @@ export default function ItemDetails() {
             sizes.sizes.map((size, index) => (
               <button
                 key={index}
-                className={toggleSizeSelection(index)}
-                onClick={() => handleSizeSelection(index)}
+                className={activeClass(index)}
+                onClick={(e) => handleSizeSelection(e, index)}
               >
                 {size.size}
               </button>

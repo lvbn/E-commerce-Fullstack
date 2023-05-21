@@ -3,6 +3,8 @@
   flex-direction: column;
   position: fixed;
 
+  z-index: 50;
+
   box-sizing: border-box;
 
   right: 0;

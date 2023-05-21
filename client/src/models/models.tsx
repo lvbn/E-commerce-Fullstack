@@ -14,3 +14,11 @@ export interface Product {
 export interface CartItemType extends Product {
   quantity: number
 }
+
+interface SizeObject {
+  size: ProductSize
+}
+export interface Sizes {
+  activeSize: SizeObject,
+  sizes: SizeObject[]
+}

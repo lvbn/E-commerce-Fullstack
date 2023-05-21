@@ -28,6 +28,7 @@ const item = {
 };
 
 export default function Menu() {
+
   return (
     <motion.div
       className={`${styles.container} ${container}`}

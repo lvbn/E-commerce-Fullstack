@@ -1,3 +1,4 @@
+
 import { create } from 'zustand'
 
 type MenuStates = {
@@ -18,5 +19,6 @@ export const useMenuSlice = create<MenuStates & MenuActions>()((set) => ({
     }
   ),
 
-  closeMenu: () => set({ isOpen: false })
+  closeMenu: () => set({ isOpen: false }),
+
 }))
