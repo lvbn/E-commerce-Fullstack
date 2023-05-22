@@ -15,7 +15,7 @@ This project is a prototype of an online shop. It drives the user through a smoo
 
 Vite + React + TypeScript + Zustand + Framer motion  + CSS
 
-This project was created with vite. React with TypeScript builds the frontend. Zustand is the tool used to manage states and framer Is the animation library behind the smooth effects you can see thoughout the application. Vanilla CSS was chosen to style the apllication. 
+This project was created with vite. React with TypeScript builds the frontend. Zustand is the tool used to manage states and framer Is the animation library behind the smooth effects you can see thoughout the application. Vanilla CSS was chosen to style the apllication and the css modules was the preferred approach.
 
 ##+ Available Scripts
 
