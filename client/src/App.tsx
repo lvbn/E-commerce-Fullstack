@@ -5,13 +5,13 @@ import Navbar from "./components/navbar/Navbar";
 import ShoppingCart from "./components/shopping-cart/ShoppingCart";
 import { useEffect } from "react";
 import { useMenuSlice } from "./zustand/MenuSlice";
-import { useCartSlice } from "./zustand/ShoppingCartSlice";
+// import { useCartSlice } from "./zustand/ShoppingCartSlice";
 
 function App() {
   const closeMenu = useMenuSlice((state) => state.closeMenu)
   // const toggleMenu = useMenuSlice((state) => state.toggleMenu)
 
-  const closeCart = useCartSlice((state) => state.closeCart)
+  // const closeCart = useCartSlice((state) => state.closeCart)
   // const toggleCart = useCartSlice((state) => state.toggleCart)
 
   const navigate = useNavigate()
