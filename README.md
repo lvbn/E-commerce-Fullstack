@@ -11,7 +11,7 @@ https://646b443975ecde149a5927d4--e-commerce-fe.netlify.app
 This project is a prototype of an online shop. It drives the user through a smooth, frictionless and convertful shopping expierence. The animations provide a pleasent UI and allow users to constantly interact with the interface. Corners, border, colors are consistent. Call to actions are strategically placed aiming maximum number of convertions possible. 
 
 
-### Frontend
+## Frontend
 
 Vite + React + TypeScript + Zustand + Framer motion 
 
