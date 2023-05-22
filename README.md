@@ -4,6 +4,7 @@
 
 ## Visit the applicaiton
 https://646b443975ecde149a5927d4--e-commerce-fe.netlify.app
+![Screen Recording 2023-05-22 at 10 41 30](https://github.com/lvbn/E-commerce-frontend/assets/65773848/28a2d958-7a50-4c55-b076-38684678139f)
 
 
 ## About this project
