@@ -2,7 +2,7 @@
 
 ## Frontend for a online shop.
 
-### Click the link bellow to visit the website online:
+Click the link bellow to visit the website online:
 https://646b443975ecde149a5927d4--e-commerce-fe.netlify.app
 
 ![Screenshot 2023-05-21 at 21 06 28](https://github.com/lvbn/E-commerce-frontend/assets/65773848/9a76d437-e249-4201-8bc9-a5928c36adcf)
@@ -19,7 +19,7 @@ Vite + React + TypeScript + Zustand + Framer motion
 
 This project was created with vite. React with TypeScript builds the frontend. Zustand is the tool used to manage states and framer Is the animation library behind the smooth effects you can see thoughout the application.
 
-## Available Scripts
+##+ Available Scripts
 
 ### `npm run dev`
 
