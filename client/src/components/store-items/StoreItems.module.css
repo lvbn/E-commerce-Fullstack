@@ -4,9 +4,9 @@
 
 .storeItems {
   list-style-type: none;
-  
+
   box-sizing: border-box;
-  width: 100vw;
+  width: 100%;
   height: calc(100vh - 65px);
 
   padding: 50px 75px 0 75px;

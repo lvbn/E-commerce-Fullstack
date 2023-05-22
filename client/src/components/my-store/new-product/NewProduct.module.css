@@ -1,0 +1,158 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  color: #118259;
+
+  padding: 15px;
+
+  border-radius: 4px;
+
+  background-color: #C4DDD4;
+}
+
+.container > .form {
+  width: 100%;
+}
+
+.form > h1 {
+  margin-top: 0;
+}
+
+.form > h4 {
+  margin: 0;
+}
+
+.form > input {
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  height: 46px;
+  width: 100%;
+  margin: 0;
+
+  outline: none;
+  border-radius: 4px;
+  color: #118259;
+  background-color: #EEEEEE;
+}
+
+.form > input:focus {
+  border: 1px solid #118259;
+}
+
+.form > button {
+  box-sizing: border-box;
+  height: 46px;
+  width: 100%;
+  margin: 0;
+
+  border-radius: 4px;
+
+  font-size: 18px;
+
+  color:#EEEEEE;
+  background-color: #118259;
+}
+
+
+.selectors {
+  width: 100%;
+
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.selector {
+  display: flex;
+  flex-direction: column;
+}
+
+.selector > label {
+  margin: 0 0 5px 0px;
+  color: #118259;
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cancelButton {
+  box-sizing: border-box;
+  height: 46px;
+  width: fit-content;
+  margin: 0 20px 0 0;
+
+  border-radius: 4px;
+
+  font-size: 18px;
+
+  color:#EEEEEE;
+  background-color: #bc4f4f;
+
+  border: none;
+}
+
+.cancelButton:hover {
+  background-color: #BE0000;
+}
+
+.addButton {
+  box-sizing: border-box;
+  height: 46px;
+  width: 100%;
+  margin: 0;
+  border-radius: 4px;
+
+  font-size: 18px;
+
+  color:#EEEEEE;
+  background-color: #72a593;
+}
+
+.addButton:hover {
+  background-color: #118259;
+}
+
+.selectContainer {
+  position: relative;
+}
+
+.select {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  width: 80px;
+  height: 40px;
+  padding: 8px 15px;
+  background-color: #72a593;
+  color: #EEEEEE;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  /* hide caret in FireFox */
+  -moz-appearance: none;
+  /* hide caret in Chrome */
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+/* hide caret in IE10 */
+.select::-ms-expand {
+  display: none;
+}
+
+.select:hover {
+  background-color: #118259;
+}

@@ -6,12 +6,14 @@ import './index.css'
 import StoreItems from "./components/store-items/StoreItems";
 import ItemDetails from './components/item-details/ItemDetails.tsx';
 import Login from './components/login/Login.tsx';
+import MyStoreWrapper from './components/my-store/my-store-wrapper/MyStoreWrapper.tsx'
 
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import Signup from './components/signup/Signup.tsx';
+import NewProduct from './components/my-store/new-product/NewProduct.tsx';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +35,20 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <Signup />,
+      },
+      {
+        path: "/mystore",
+        element: <MyStoreWrapper />,
+        children: [
+          {
+            path: "/mystore/products",
+            element: <StoreItems />,
+          },
+          {
+            path: "/mystore/newproduct",
+            element: <NewProduct />,
+          }
+        ]
       },
     ]
   },

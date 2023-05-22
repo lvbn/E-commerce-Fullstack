@@ -1,19 +1,22 @@
-import styles from './Menu.module.css'
-import UserIcon from '../../assets/icons/user-icon.svg'
-import FavoritesIcon from '../../assets/icons/favorites-icon.svg'
-import MyStore from '../../assets/icons/my-store-icon.svg'
-import Configuraitons from '../../assets/icons/configurations-icon.svg'
-import Logout from '../../assets/icons/logout-icon.svg'
+import styles from './Sidebar.module.css'
+
+import AddProduct from '../../../assets/icons/add-product-icon.svg'
+import Orders from '../../../assets/icons/new-order-icon.svg'
+import FavoritesIcon from '../../../assets/icons/favorites-icon.svg'
+import MyStore from '../../../assets/icons/my-store-icon.svg'
+import Logout from '../../../assets/icons/logout-icon.svg'
 
 import { motion } from "framer-motion";
 import { useNavigate } from 'react-router-dom'
 
 const container = {
-  hidden: { opacity: 1, scale: 0 },
+  hidden: { opacity: 0, scale: 0.99 },
   visible: {
     opacity: 1,
     scale: 1,
     transition: {
+      duration: 0.4,
+      ease: [0, 0.71, 0.2, 1.01],
       delayChildren: 0.1,
       staggerChildren: 0.07
     }
@@ -28,7 +31,8 @@ const item = {
   }
 };
 
-export default function Menu() {
+
+export default function Sidebar() {
 
   const navigate = useNavigate()
 
@@ -40,13 +44,13 @@ export default function Menu() {
       animate="visible"
     >
 
-      <motion.div className={styles.menuItem} variants={item} onClick={() => navigate('/login')}>
+      <motion.div className={styles.menuItem} variants={item} onClick={() => navigate('/mystore/products')}>
         <img
-          src={UserIcon}
+          src={MyStore}
           className={styles.cartItemsIcon}
-          alt="login"
+          alt="products"
         />
-        <p>log in</p>
+        <p>products</p>
       </motion.div>
 
       <motion.div className={styles.menuItem} variants={item} >
@@ -59,23 +63,22 @@ export default function Menu() {
         <p>favorites</p>
       </motion.div>
 
-      <motion.div className={styles.menuItem} variants={item} onClick={() => navigate('/mystore/products')}>
+      <motion.div className={styles.menuItem} variants={item} onClick={() => navigate('/mystore')}>
       <img
-            src={MyStore}
+            src={Orders}
             className={styles.cartItemsIcon}
-            alt="my store"
+            alt="orders"
           />
-        <p>my store</p>
+        <p>orders</p>
       </motion.div>
 
-      <motion.div className={styles.menuItem} variants={item}>
+      <motion.div className={styles.menuItem} variants={item} onClick={() => navigate('/mystore/newproduct')}>
       <img
-            src={Configuraitons}
+            src={AddProduct}
             className={styles.cartItemsIcon}
-            alt="configurations"
-            // onClick={() => openCart()}
+            alt="add product"
           />
-        <p>configurations</p>
+        <p>add product</p>
       </motion.div>
 
       <motion.div className={styles.menuItem} variants={item}>
