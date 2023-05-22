@@ -5,11 +5,13 @@ import './index.css'
 
 import StoreItems from "./components/store-items/StoreItems";
 import ItemDetails from './components/item-details/ItemDetails.tsx';
+import Login from './components/login/Login.tsx';
 
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import Signup from './components/signup/Signup.tsx';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
       {
         path: "/products/:id",
         element: <ItemDetails />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
       },
     ]
   },

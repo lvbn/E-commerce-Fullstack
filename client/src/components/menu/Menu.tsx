@@ -6,6 +6,7 @@ import Configuraitons from '../../assets/icons/configurations-icon.svg'
 import Logout from '../../assets/icons/logout-icon.svg'
 
 import { motion } from "framer-motion";
+import { useNavigate } from 'react-router-dom'
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -29,6 +30,8 @@ const item = {
 
 export default function Menu() {
 
+  const navigate = useNavigate()
+
   return (
     <motion.div
       className={`${styles.container} ${container}`}
@@ -37,12 +40,11 @@ export default function Menu() {
       animate="visible"
     >
 
-      <motion.div className={styles.menuItem} variants={item} >
+      <motion.div className={styles.menuItem} variants={item} onClick={() => navigate('/login')}>
         <img
           src={UserIcon}
           className={styles.cartItemsIcon}
           alt="login"
-          // onClick={() => openCart()}
         />
         <p>log in</p>
       </motion.div>
