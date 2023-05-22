@@ -2,7 +2,8 @@
 
 ## Frontend for a online shop.
 
-![8347E298-2CDB-48B5-9BFA-6DCB811C3AD4_4_5005_c](https://github.com/lvbn/E-commerce-frontend/assets/65773848/ba11dae8-475a-47b2-be6e-bfb0f5363d2b)
+![Screenshot 2023-05-21 at 21 06 28](https://github.com/lvbn/E-commerce-frontend/assets/65773848/9a76d437-e249-4201-8bc9-a5928c36adcf)
+
 
 This project is a prototype of an online shop. It drives the user through a smooth, frictionless and convertful shopping expierence. The animations provide a pleasent UI and allow users to constantly interact with the interface. Corners, border, colors are consistent. Call to actions are strategically placed aiming maximum number of convertions possible. 
 
