@@ -1,6 +1,6 @@
 # E-commerce Frontend
 
-![Screenshot 2023-05-21 at 21 06 28](https://github.com/lvbn/E-commerce-frontend/assets/65773848/9a76d437-e249-4201-8bc9-a5928c36adcf)
+![complete-flow](https://github.com/lvbn/E-commerce-frontend/assets/65773848/33c213ed-0df6-4c47-bdb7-a07808342aed)
 
 ## Visit the applicaiton
 https://646b443975ecde149a5927d4--e-commerce-fe.netlify.app
