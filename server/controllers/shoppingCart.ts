@@ -1,5 +1,5 @@
-import { client } from '../database/db'
+import { User } from '../models/user-model'
 
-export const getShoppingCart = () => {
-  console.log('testing', client.db())
+export const getShoppingCart = async (req, res) => {
+
 }
