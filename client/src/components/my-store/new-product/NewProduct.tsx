@@ -81,8 +81,8 @@ export default function NewProduct() {
         <h4>add</h4>
         <h1>New Product</h1>
 
-        <label htmlFor='id'>ID</label><br></br>
-        <input type='number' id='id' name='id' value={state.productId} onChange={handleChange}></input><br></br>
+        <label htmlFor='productId'>ID</label><br></br>
+        <input type='number' id='productId' name='productId' value={state.productId} onChange={handleChange}></input><br></br>
 
         <label htmlFor='name'>Name</label><br></br>
         <input type='text' id='name' name='name' value={state.name} onChange={handleChange}></input><br></br>

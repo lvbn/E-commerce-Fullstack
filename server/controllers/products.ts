@@ -4,9 +4,15 @@ import { IProduct } from '../models/product-model'
 
 export const getAllProducts = async (req, res) => {
   try {
-    const user = await Product.find()
-    res.status(200)
-    res.json(user)
+    const products = await Product.find()
+
+    if (products) {
+      res.status(200)
+      res.send(products)
+    } else {
+      res.status(200)
+      res.send([])
+    }
   } catch (error) {
     res.status(404)
     res.json({ error: error })
@@ -46,7 +52,7 @@ export const getProductBySeller = async (req, res) => {
       // sellerId: req.body.sellerId
       sellerId: sellerId.sellerId
     }).populate<{ product: IProduct }>('_id')
-      .orFail()
+      // .orFail() // throws an error if there is no match
       .then(doc => {
       // Works
       const t = doc;
@@ -56,6 +62,9 @@ export const getProductBySeller = async (req, res) => {
     if (products) {
       res.status(200)
       res.send(products)
+    } else {
+      res.status(200)
+      res.send([])
     }
 
   } catch (error) {
