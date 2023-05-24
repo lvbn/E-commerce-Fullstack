@@ -1,21 +1,25 @@
 import mongoose, { Schema, Types, model } from 'mongoose'
 
 interface IProduct {
-  name: string;
-  description: string;
-  price: mongoose.SchemaDefinitionProperty<number>;
-  sellerId: Types.ObjectId;
-  quantity: number;
+  sellerId: Types.ObjectId,
+  productId: string
+  name: string
+  description: string
+  price: number
+  quantity: number
+  sizes: string[]
   imgUrl: string[]
 }
 
 // 2. Create a Schema corresponding to the document interface.
 export const productSchema = new Schema<IProduct>({
+  sellerId: { type: mongoose.Schema.Types.ObjectId, ref:'User' },
+  productId: { type: String, required: true },
   name: { type: String, required: true },
   description: { type: String, required: true },
-  price: { type: Schema.Types.Decimal128, required: true },
-  sellerId: { type: mongoose.Schema.Types.ObjectId, ref:'User' },
+  price: { type: Number, required: true },
   quantity: { type: Number, required: true },
+  sizes:  { type: [String], required: true},
   imgUrl: { type: [String], required: true }
 });
 

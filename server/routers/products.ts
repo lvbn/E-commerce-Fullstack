@@ -4,5 +4,5 @@ import { getAllProducts, getProductBySeller, postOneProduct } from '../controlle
 export default function productsRouter (router: express.Router) {
   router.get('/products', getAllProducts)
   router.post('/products', postOneProduct)
-  router.post('/productsbyseller', getProductBySeller)
+  router.get('/products/:sellerId', getProductBySeller)
 }

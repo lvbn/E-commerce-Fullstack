@@ -16,11 +16,13 @@ export const getAllProducts = async (req, res) => {
 export const postOneProduct = async (req, res) => {
   try {
     const product = new Product({
+      sellerId: req.body.sellerId,
+      productId: req.body.productId,
       name: req.body.name,
       description: req.body.description,
       price: req.body.price,
-      sellerId: req.body.sellerId,
       quantity: req.body.quantity,
+      sizes: req.body.sizes,
       imgUrl: req.body.imgUrl
     })
 
@@ -37,9 +39,12 @@ export const postOneProduct = async (req, res) => {
 }
 
 export const getProductBySeller = async (req, res) => {
+  const sellerId = req.params
+
   try {
     const products = await Product.find({
-      sellerId: req.body.sellerId
+      // sellerId: req.body.sellerId
+      sellerId: sellerId.sellerId
     }).populate<{ product: IProduct }>('_id')
       .orFail()
       .then(doc => {
@@ -50,7 +55,7 @@ export const getProductBySeller = async (req, res) => {
 
     if (products) {
       res.status(200)
-      res.json(products)
+      res.send(products)
     }
 
   } catch (error) {
