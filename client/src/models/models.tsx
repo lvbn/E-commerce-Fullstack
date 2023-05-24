@@ -2,18 +2,19 @@ export type ProductSize = 'S' | 'M' | 'L' | 'XL';
 
 
 export interface Product {
-  id: number
+  id: string
+  productId: number
   name: string
-  color: string
-  size: ProductSize
+  description: string
   price: number
-  description: string,
-  image: string
+  quantity: number
+  sizes: string[]
+  image: string[]
 }
 
-export interface CartItemType extends Product {
-  quantity: number
-}
+// export interface CartItemType extends Product {
+//   quantity: number
+// }
 
 interface SizeObject {
   size: ProductSize

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
 
-import StoreItems from "./components/store-items/StoreItems";
 import ItemDetails from './components/item-details/ItemDetails.tsx';
 import Login from './components/login/Login.tsx';
 import MyStoreWrapper from './components/my-store/my-store-wrapper/MyStoreWrapper.tsx'
@@ -14,6 +13,9 @@ import {
 } from "react-router-dom";
 import Signup from './components/signup/Signup.tsx';
 import NewProduct from './components/my-store/new-product/NewProduct.tsx';
+import NewOrder from './components/my-store/new-order/NewOrder.tsx';
+import AllProductsScreen from './screens/all-products-screen/AllProductsScreen.tsx';
+import MyProductsScreen from './screens/my-products-screen/MyProductsScreen.tsx';
 
 const router = createBrowserRouter([
   {
@@ -22,7 +24,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/products",
-        element: <StoreItems />,
+        element: <AllProductsScreen />,
       },
       {
         path: "/products/:id",
@@ -42,11 +44,15 @@ const router = createBrowserRouter([
         children: [
           {
             path: "/mystore/products",
-            element: <StoreItems />,
+            element: <MyProductsScreen />,
           },
           {
             path: "/mystore/newproduct",
             element: <NewProduct />,
+          },
+          {
+            path: "/mystore/neworder",
+            element: <NewOrder />,
           }
         ]
       },

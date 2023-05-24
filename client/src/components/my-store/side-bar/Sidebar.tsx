@@ -1,7 +1,8 @@
 import styles from './Sidebar.module.css'
 
 import AddProduct from '../../../assets/icons/add-product-icon.svg'
-import Orders from '../../../assets/icons/new-order-icon.svg'
+import Orders from '../../../assets/icons/orders-icon.svg'
+import NewOrder from '../../../assets/icons/new-order-icon.svg'
 import FavoritesIcon from '../../../assets/icons/favorites-icon.svg'
 import MyStore from '../../../assets/icons/my-store-icon.svg'
 import Logout from '../../../assets/icons/logout-icon.svg'
@@ -53,6 +54,15 @@ export default function Sidebar() {
         <p>products</p>
       </motion.div>
 
+      <motion.div className={styles.menuItem} variants={item} onClick={() => navigate('/mystore/newproduct')}>
+      <img
+            src={AddProduct}
+            className={styles.cartItemsIcon}
+            alt="add product"
+          />
+        <p>add product</p>
+      </motion.div>
+
       <motion.div className={styles.menuItem} variants={item} >
         <img
           src={FavoritesIcon}
@@ -72,13 +82,13 @@ export default function Sidebar() {
         <p>orders</p>
       </motion.div>
 
-      <motion.div className={styles.menuItem} variants={item} onClick={() => navigate('/mystore/newproduct')}>
+      <motion.div className={styles.menuItem} variants={item} onClick={() => navigate('/mystore/neworder')}>
       <img
-            src={AddProduct}
+            src={NewOrder}
             className={styles.cartItemsIcon}
-            alt="add product"
+            alt="new order"
           />
-        <p>add product</p>
+        <p>new order</p>
       </motion.div>
 
       <motion.div className={styles.menuItem} variants={item}>

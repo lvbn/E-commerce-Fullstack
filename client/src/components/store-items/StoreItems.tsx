@@ -1,7 +1,6 @@
 import styles from './StoreItems.module.css'
 
 import StoreItem from '../../components/store-item/StoreItem'
-import mock from '../../mock-data/mock.json'
 import { Product } from '../../models/models'
 
 import { motion } from "framer-motion";
@@ -28,24 +27,11 @@ const item = {
   }
 };
 
-export default function StoreItems() {
+export default function StoreItems({products}: { products: Product[] }) {
 
-  // console.log(mock)
-  const data = JSON.parse(JSON.stringify(mock))
-  const products: Product[] = data.products;
+  // console.log('Store Items: ', products)
 
   return (
-    // <div className={styles.storeItems} >
-    //     {
-    //       products.map((product: Product) => (
-    //         <StoreItem
-    //           key={product.id}
-    //           product={product}
-    //         />
-    //       ))
-    //     }
-    //   </div>
-
     <motion.ul
         className={styles.storeItems}
         variants={container}
@@ -53,8 +39,8 @@ export default function StoreItems() {
         animate="visible"
       >
         {
-          products.map((product: Product) => (
-            <motion.li key={product.id} variants={item}>
+          products.map((product) => (
+            <motion.li key={product.productId} variants={item}>
               <StoreItem
                 product={product}
               />

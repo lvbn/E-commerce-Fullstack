@@ -4,12 +4,12 @@ import { Product } from '../../models/models'
 import { useNavigate } from 'react-router-dom'
 
 type Props = {
-  // key: number,
   product: Product
 }
 
 export default function StoreItem({product}: Props) {
 
+  // console.log('Store Item: ', product)
   const navigate = useNavigate()
 
   return (

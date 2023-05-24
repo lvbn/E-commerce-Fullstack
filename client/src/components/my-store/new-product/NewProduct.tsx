@@ -1,9 +1,14 @@
 
-import { useNavigate } from 'react-router-dom';
 import styles from './NewProduct.module.css'
+import { useNavigate } from 'react-router-dom';
+import { postProduct } from '../../../services/products-service'
 
 import { motion } from "framer-motion";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import Checkbox from '@mui/material/Checkbox';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 const container = {
   hidden: { opacity: 0, scale: 0.9 },
@@ -23,45 +28,45 @@ export default function NewProduct() {
 
   const navigate = useNavigate()
 
+  const [sizes, setSizes] = useState<string[]>([]);
   const [state, setState] = useState({
-    id: '',
-    ourClient: '',
+    sellerId: '646d3615ee38ef18f3490506',
+    productId: '',
+    name: '',
+    description: '',
+    price: '',
     quantity: '',
-    payment: '',
-    charge: '',
-    finalClient: '',
-    delivery: '',
-    date: '',
-    fullfilment: ''
+    sizes: null,
+    imgUrl: []
   })
 
-  const handleChange = (e: { target: { value: any; name: any; }; }) => {
-    const value = e.target.value;
+  const handleChange = (e: { target: { value: any; name: any; type?: string; checked?: boolean}; }) => {
+    let copyOfSizes: string[] = [];
+
+    if (e.target.type === 'checkbox' && e.target.checked) copyOfSizes = [...sizes, e.target.value]
+    else if (e.target.type === 'checkbox' && !e.target.checked) copyOfSizes = sizes.filter(size => size !== e.target.value)
+    // else if (e.target.type === 'checkbox' && !e.target.checked) setSizes(sizes.filter(size => size !== e.target.value))
+
+    const value = e.target.type === "checkbox" ? copyOfSizes : e.target.value;
+
+    setSizes(copyOfSizes)
+
     setState({
       ...state,
       [e.target.name]: value
     })
   }
 
-  const handleSubmit = (e: React.SyntheticEvent) => {
+  const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
 
-    // const baseUrl = 'http://localhost:3000'
-    const baseUrl = import.meta.env.VITE_BASE_URL
+    const res = await postProduct(state)
 
-    const postOrder = async (order: any) => {
-      const response = await fetch(baseUrl + '/orders', {
-        method: "POST",
-        body: JSON.stringify(order),
-        headers: {
-          "Content-type": "application/json"
-        }
-      })
-      return await response.json()
+    if (res._id) {
+      console.log('RES: ', res)
+      // dispatch(addOrder(state))
+      navigate('/mystore/products')
     }
-    postOrder(state)
-    // dispatch(addOrder(state))
-    navigate('/orders')
   }
 
 
@@ -74,56 +79,61 @@ export default function NewProduct() {
     >
       <form className={styles.form} onSubmit={handleSubmit}>
         <h4>add</h4>
-        <h1>New Order</h1>
+        <h1>New Product</h1>
 
         <label htmlFor='id'>ID</label><br></br>
-        <input type='number' id='id' name='id' value={state.id} onChange={handleChange}></input><br></br>
+        <input type='number' id='id' name='id' value={state.productId} onChange={handleChange}></input><br></br>
 
-        <label htmlFor='ourClient'>Our client</label><br></br>
-        <input type='text' id='ourClient' name='ourClient' value={state.ourClient} onChange={handleChange}></input><br></br>
+        <label htmlFor='name'>Name</label><br></br>
+        <input type='text' id='name' name='name' value={state.name} onChange={handleChange}></input><br></br>
 
-        <label htmlFor='date'>Date</label><br></br>
-        <input type='datetime-local' id='date' name='date' value={state.date} onChange={handleChange}></input><br></br>
+        <label htmlFor='description'>Description</label><br></br>
+        <input type='textarea' id='description' name='description' value={state.description} onChange={handleChange}></input><br></br>
 
         <label htmlFor='quantity'>Quantity</label><br></br>
         <input type='number' id='quantity' name='quantity' value={state.quantity} onChange={handleChange}></input><br></br>
 
-        <label htmlFor='charge'>Charge</label><br></br>
-        <input type='number' id='charge' name='charge' value={state.charge} onChange={handleChange}></input><br></br>
-
-        <label htmlFor='finalClient'>Final client</label><br></br>
-        <input type='text' id='finalClient' name='finalClient' value={state.finalClient} onChange={handleChange}></input><br></br>
+        {/* <label htmlFor='sizes'>Sizes</label><br></br>
+        <input type='text' id='sizes' name='sizes' value={state.sizes} onChange={handleChange}></input><br></br> */}
 
         <div className={styles.selectors}>
 
           <div className={styles.selector}>
-            <label htmlFor='payment'>Fullfilment</label>
-            <select className={styles.select} name='payment' value={state.payment} onChange={handleChange}>
-              {[1,2,3].map((status) => (
-                <option key={status} value={status}>{status}</option>
+            <label htmlFor='sizes'>Sizes</label>
+            {/* <select className={styles.select} name='sizes' value={state.sizes} onChange={handleChange}>
+              {['S', 'M', 'L', 'XL'].map((size) => (
+                <option key={size} value={size}>{size}</option>
               ))}
-            </select>
-          </div>
+            </select> */}
 
-          <div className={styles.selector}>
-            <label htmlFor='fullfilment'>Fullfilment</label>
-            <select className={styles.select} name='fullfilment' value={state.fullfilment} onChange={handleChange}>
-              {[1,2,3].map((status) => (
-                <option key={status} value={status}>{status}</option>
+            {/* <FormGroup>
+              {['S', 'M', 'L', 'XL'].map((size) => (
+                <FormControlLabel
+                  key={size}
+                  control={<Checkbox onChange={handleChange}/>}
+                  label={size}
+                  // checked={checked}
+                />
               ))}
-            </select>
-          </div>
+            </FormGroup> */}
 
-          <div className={styles.selector}>
-            <label htmlFor='delivery'>Fullfilment</label>
-            <select className={styles.select} name='delivery' value={state.delivery} onChange={handleChange}>
-              {[1,2,3].map((status) => (
-                <option key={status} value={status}>{status}</option>
-              ))}
-            </select>
+            <div className={styles.sizes}>
+              {
+                ['S', 'M', 'L', 'XL'].map((size) => (
+                  <div key={size} className={styles.checkboxSize}>
+                    <input type="checkbox" id={size} name='sizes' value={size} onChange={handleChange}></input>
+                    <span className={styles.checkmark}></span>
+                    <label htmlFor={size}>{size}</label>
+                  </div>
+                ))
+              }
+            </div>
           </div>
 
         </div><br></br>
+
+        <label htmlFor='price'>Price</label><br></br>
+        <input type='number' id='price' name='price' value={state.price} onChange={handleChange}></input><br></br>
 
         <div className={styles.buttons}>
 
@@ -139,7 +149,7 @@ export default function NewProduct() {
             type='submit'
             className={styles.addButton}
           >
-            Add Order
+            Add Product
           </button>
 
         </div>
