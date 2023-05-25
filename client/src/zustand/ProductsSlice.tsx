@@ -17,7 +17,6 @@ export const useProductsSlice = create<ProductsState & ProductsAction>()((set) =
     // if there is no such item in the cart yet
     if (!state.products.find(item => item._id === newItem._id))
     {
-      console.log('check')
       return { products: [...state.products, newItem] }
     } else {
       return { products: [...state.products] }

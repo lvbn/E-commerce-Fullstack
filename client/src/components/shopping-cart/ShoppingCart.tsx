@@ -80,7 +80,7 @@ export default function ShoppingCart() {
             animate="visible"
           >
             {cartItems.map((cartItem: CartItemType) => (
-              <motion.li key={cartItem.id} variants={item}>
+              <motion.li key={cartItem._id} variants={item}>
                 <CartItem cartItem={cartItem} />
               </motion.li>
             ))}

@@ -14,7 +14,7 @@ export default function CartItem ({cartItem}: {cartItem: CartItemType}) {
 
         <div className={styles.left}>
           <p className={styles.name}>{cartItem.name}</p>
-          <p className={styles.size}>{cartItem.size}</p>
+          <p className={styles.size}>{cartItem.selectedSize}</p>
           <p className={styles.price}>{cartItem.price}</p>
         </div>
 
@@ -23,7 +23,7 @@ export default function CartItem ({cartItem}: {cartItem: CartItemType}) {
             className={styles.decrease}
             onClick={() => decreaseQuantity(cartItem)}
           >-</p>
-          <p className={styles.size}>{cartItem.quantity}</p>
+          <p className={styles.size}>{cartItem.selectedQuantity}</p>
           <p
             className={styles.increase}
             onClick={() => increaseQuantity(cartItem)
@@ -33,7 +33,7 @@ export default function CartItem ({cartItem}: {cartItem: CartItemType}) {
 
         <p
           className={styles.delete}
-          onClick={() => removeFromCart(cartItem.id)}
+          onClick={() => removeFromCart(cartItem._id)}
         >+</p>
 
       </div>

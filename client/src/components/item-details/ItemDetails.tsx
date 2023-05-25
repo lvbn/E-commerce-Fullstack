@@ -64,8 +64,9 @@ export default function ItemDetails() {
     })
 
     const selectedSize = e.currentTarget.textContent as ProductSize
+    const cartItem = {...product, selectedSize: selectedSize, selectedQuantity: 1}
     setItem({
-      ...item, selectedSize: selectedSize, selectedQuantity: 1
+      ...item, ...cartItem
     })
 
   }
@@ -121,7 +122,7 @@ export default function ItemDetails() {
         <div
           className={styles.addToCart}
           onClick={() => {
-            console.log('ITEM: ', item)
+            console.log('ITEM: ', item, product)
             if (item) {
               addItem(item);
               openCart();
