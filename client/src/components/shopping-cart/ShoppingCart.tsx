@@ -1,10 +1,12 @@
 import styles from './ShoppingCart.module.css'
 
 import { useCartSlice } from '../../zustand/ShoppingCartSlice'
-import { CartItemType } from '../../models/models'
+import { CartItemType, Product } from '../../models/models'
 import CartItem from '../cart-item/CartItem'
 
 import { motion } from "framer-motion";
+import { useEffect, useState } from 'react';
+import { getAllCartProductsByUser } from '../../services/shopping-cart-service';
 
 const container = {
   hidden: { opacity: 0, scale: 0.99 },
@@ -32,22 +34,23 @@ export default function ShoppingCart() {
   const cartItems = useCartSlice((state) => state.cartItems)
   const isOpen = useCartSlice((state) => state.isOpen)
   const closeCart = useCartSlice((state) => state.closeCart)
+  const addItem = useCartSlice((state) => state.addItem)
 
-  // // URL query and fetch the DB
-  // const [products, setProducts] = useState<Product[]>([])
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   const fectchProductsBySellerId = async () => {
-  //     const res = await getProductsBySellerId({sellerId: '646d3615ee38ef18f3490506'})
-  //     // console.log('My Products Screen: ', res)
-  //     if (res !== undefined) {
-  //       setProducts(res)
-  //     }
-  //   }
+    const fetchAllCartProductsByUser = async () => {
+      const res = await getAllCartProductsByUser({userId: '646d4919d6085ae75cb0f64c'})
+      console.log('Shopping cart products by userID: ', res)
+      if (res !== undefined) {
+        res.forEach((product: CartItemType) => {
+          addItem(product)
+        })
+      }
+    }
 
-  //   fectchProductsBySellerId()
-  // }, [])
+    fetchAllCartProductsByUser()
+  }, [])
 
   return (
     <>
@@ -93,7 +96,7 @@ export default function ShoppingCart() {
                 className={styles.totalValue}
               >
                 {cartItems.reduce((total, cartItem) => {
-                  return total + (cartItem.price * cartItem.quantity)
+                  return total + (cartItem.price * cartItem.selectedQuantity)
                 }, 0)}
               </h3>
             </div>

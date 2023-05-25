@@ -33,7 +33,7 @@ export default function Navbar() {
             onClick={toggleCart}
           >
             {cartItems.reduce((total, cartItem) => {
-              return total + cartItem.quantity
+              return total + cartItem.selectedQuantity
             }, 0)}
           </div>
           <img

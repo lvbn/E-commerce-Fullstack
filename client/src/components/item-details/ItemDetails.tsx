@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { motion } from "framer-motion";
 // import { getOneProduct } from '../../services/products-service'
 import { useProductsSlice } from '../../zustand/ProductsSlice'
+import { postCartProduct } from '../../services/shopping-cart-service'
 
 const container = {
   hidden: { opacity: 0, scale: 0.9 },
@@ -57,6 +58,20 @@ export default function ItemDetails() {
     setProduct(products.find(product => product._id === productId.id))
   }, [])
 
+  // handle add to cart
+  const handleAddToCart = async (item: CartItemType) => {
+    const res = await postCartProduct(item)
+
+    if (res) {
+      // console.log('RES: ', res)
+      addItem(item);
+      openCart()
+    } else {
+      // add toast here
+      // fail()
+    }
+  }
+
   // handle size selection
   const handleSizeSelection = (e: React.SyntheticEvent, index: number) => {
     setSizeState({
@@ -64,7 +79,7 @@ export default function ItemDetails() {
     })
 
     const selectedSize = e.currentTarget.textContent as ProductSize
-    const cartItem = {...product, selectedSize: selectedSize, selectedQuantity: 1}
+    const cartItem = {...product, selectedSize: selectedSize, selectedQuantity: 1, userId: '646d4919d6085ae75cb0f64c'}
     setItem({
       ...item, ...cartItem
     })
@@ -124,9 +139,12 @@ export default function ItemDetails() {
           onClick={() => {
             console.log('ITEM: ', item, product)
             if (item) {
-              addItem(item);
-              openCart();
+              // addItem(item);
+              handleAddToCart(item)
+              // postCartProduct(item)
+              // openCart()
             } else {
+              // add toast here
               console.log('problem here')
             }
           }}

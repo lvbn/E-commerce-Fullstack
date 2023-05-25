@@ -11,6 +11,7 @@ import { useState } from 'react';
 // import FormControlLabel from '@mui/material/FormControlLabel';
 
 import toast, { Toaster } from 'react-hot-toast';
+import { useProductsSlice } from '../../../zustand/ProductsSlice';
 
 const fail = () => toast.error('something went wrong... 😕 please try again.', {
   style: {
@@ -42,6 +43,8 @@ const container = {
 export default function NewProduct() {
 
   const navigate = useNavigate()
+
+  const addItem = useProductsSlice((state) => state.addItem)
 
   const [sizes, setSizes] = useState<string[]>([]);
   const [state, setState] = useState({
@@ -78,8 +81,9 @@ export default function NewProduct() {
     const res = await postProduct(state)
 
     if (res) {
-      console.log('RES: ', res)
+      // console.log('RES: ', res)
       // dispatch(addOrder(state))
+      addItem(res)
       navigate('/mystore/products')
     } else {
       fail()

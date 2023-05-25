@@ -42,6 +42,7 @@ export const getOneProduct = async (req, res) => {
 }
 
 export const postOneProduct = async (req, res) => {
+  console.log('one prod: ', req.body)
   try {
     const product = new Product({
       sellerId: req.body.sellerId,

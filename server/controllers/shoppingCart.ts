@@ -34,7 +34,7 @@ export const postOneCartProduct = async (req, res) => {
 
 export const getShoppingCartByUser = async (req, res) => {
   const userId = req.params
-  // console.log(userId)
+  console.log(userId)
 
   try {
     const products = await CartProduct.find({
