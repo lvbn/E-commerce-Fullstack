@@ -3,12 +3,13 @@
 
 import express from 'express'
 import cors from 'cors'
-// require('dotenv').config();
+require('dotenv').config();
 
 import routerRoutes from './routers/index';
 
 export const app = express()
-export const port = 3000;
+// export const port = 3000;
+export const port = process.env.PORT
 
 const corsOptions = {
   origin: "*",
