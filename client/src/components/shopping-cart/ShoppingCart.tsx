@@ -1,11 +1,11 @@
 import styles from './ShoppingCart.module.css'
 
 import { useCartSlice } from '../../zustand/ShoppingCartSlice'
-import { CartItemType, Product } from '../../models/models'
+import { CartItemType } from '../../models/models'
 import CartItem from '../cart-item/CartItem'
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { getAllCartProductsByUser } from '../../services/shopping-cart-service';
 
 const container = {
