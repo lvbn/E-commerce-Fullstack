@@ -10,6 +10,21 @@ import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
+import toast, { Toaster } from 'react-hot-toast';
+
+const fail = () => toast.error('something went wrong... 😕 please try again.', {
+  style: {
+    border: '1px solid #BE0000',
+    backgroundColor: '#FDB6C1',
+    padding: '16px',
+    color: '#BE0000',
+  },
+  iconTheme: {
+    primary: '#BE0000',
+    secondary: '#FDB6C1',
+  },
+});
+
 const container = {
   hidden: { opacity: 0, scale: 0.9 },
   visible: {
@@ -62,10 +77,12 @@ export default function NewProduct() {
 
     const res = await postProduct(state)
 
-    if (res._id) {
+    if (res) {
       console.log('RES: ', res)
       // dispatch(addOrder(state))
       navigate('/mystore/products')
+    } else {
+      fail()
     }
   }
 
@@ -77,6 +94,7 @@ export default function NewProduct() {
       initial="hidden"
       animate="visible"
     >
+      <Toaster />
       <form className={styles.form} onSubmit={handleSubmit}>
         <h4>add</h4>
         <h1>New Product</h1>

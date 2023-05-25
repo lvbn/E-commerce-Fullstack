@@ -47,6 +47,6 @@ export default function StoreItems({products}: { products: Product[] }) {
             </motion.li>
           ))
         }
-      </motion.ul>
+    </motion.ul>
   )
 }
