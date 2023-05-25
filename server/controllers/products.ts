@@ -19,6 +19,28 @@ export const getAllProducts = async (req, res) => {
   }
 }
 
+export const getOneProduct = async (req, res) => {
+  const product_Id = req.params
+  // console.log(product_Id.productId)
+
+  try {
+    const products = await Product.findOne({
+      _id: product_Id.productId
+    })
+
+    if (products) {
+      res.status(200)
+      res.send(products)
+    } else {
+      res.status(200)
+      res.send([])
+    }
+  } catch (error) {
+    res.status(404)
+    res.json({ error: error })
+  }
+}
+
 export const postOneProduct = async (req, res) => {
   try {
     const product = new Product({

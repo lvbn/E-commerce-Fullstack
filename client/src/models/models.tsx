@@ -2,7 +2,8 @@ export type ProductSize = 'S' | 'M' | 'L' | 'XL';
 
 
 export interface Product {
-  id: string
+  _id: string
+  sellerId: string
   productId: number
   name: string
   description: string
@@ -12,9 +13,10 @@ export interface Product {
   image: string[]
 }
 
-// export interface CartItemType extends Product {
-//   quantity: number
-// }
+export interface CartItemType extends Product {
+  selectedQuantity: number
+  selectedSize: ProductSize
+}
 
 interface SizeObject {
   size: ProductSize

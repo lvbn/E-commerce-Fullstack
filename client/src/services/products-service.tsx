@@ -19,6 +19,24 @@ export const getAllProducts = async () => {
   }
 }
 
+export const getOneProduct = async (productId: string) => {
+  try {
+    const response = await fetch(baseUrl + '/products/' + productId, {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json"
+      }
+    })
+
+    if (response.ok) {
+      const data = await response.json()
+      return data
+    }
+  } catch (error) {
+    return error
+  }
+}
+
 export const postProduct = async (newProduct: any) => {
   try {
     const response = await fetch(baseUrl + '/products', {

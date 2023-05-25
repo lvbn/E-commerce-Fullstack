@@ -1,11 +1,12 @@
 import styles from './ItemDetails.module.css'
 import { useCartSlice } from '../../zustand/ShoppingCartSlice'
-import mock from '../../mock-data/mock.json'
 import { useParams } from 'react-router-dom'
-import { Product, Sizes, ProductSize } from '../../models/models'
-import { useState } from 'react'
+import { Product, Sizes, ProductSize, CartItemType } from '../../models/models'
+import { useEffect, useState } from 'react'
 
 import { motion } from "framer-motion";
+// import { getOneProduct } from '../../services/products-service'
+import { useProductsSlice } from '../../zustand/ProductsSlice'
 
 const container = {
   hidden: { opacity: 0, scale: 0.9 },
@@ -22,7 +23,6 @@ const container = {
 };
 
 
-
 const sizes: Sizes = {
   activeSize: { size: 'M' },
   sizes: [{ size: 'S' }, { size: 'M' }, { size: 'L' }, { size: 'XL' }]
@@ -30,31 +30,44 @@ const sizes: Sizes = {
 
 export default function ItemDetails() {
 
+  const [item, setItem] = useState<CartItemType>({
+    _id: '',
+    sellerId: '',
+    productId: 0,
+    name: '',
+    description: '',
+    price: 0,
+    quantity: 0,
+    sizes: [],
+    image: [],
+    selectedQuantity: 0,
+    selectedSize: 'M'
+  })
+  const [product, setProduct] = useState<Product>()
+  const [sizeState, setSizeState] = useState(sizes)
+
   const addItem = useCartSlice((state) => state.addItem)
   const openCart = useCartSlice((state) => state.openCart)
+  const products = useProductsSlice((state) => state.products)
 
   // URL param
-  const param = useParams()
+  const productId = useParams()
 
-  // URL query and fetch the DB
-  const data = JSON.parse(JSON.stringify(mock))
-  const products: Product[] = data.products;
-  let product = products.find(product => String(product.id) === param.id)
-
-  const [item, setItem] = useState(product)
-  const [sizeState, setSizeState] = useState(sizes)
+  useEffect(() => {
+    setProduct(products.find(product => product._id === productId.id))
+  }, [])
 
   // handle size selection
   const handleSizeSelection = (e: React.SyntheticEvent, index: number) => {
     setSizeState({
       ...sizeState, activeSize: sizeState?.sizes[index]
     })
-    if (item) {
-      const selectedSize = e.currentTarget.textContent as ProductSize
-      setItem({
-        ...item, size: selectedSize
-      })
-    }
+
+    const selectedSize = e.currentTarget.textContent as ProductSize
+    setItem({
+      ...item, selectedSize: selectedSize, selectedQuantity: 1
+    })
+
   }
 
   const activeClass = (index: number) => {
@@ -95,7 +108,7 @@ export default function ItemDetails() {
           {
             sizes.sizes.map((size, index) => (
               <button
-                key={index}
+                key={size.size}
                 className={activeClass(index)}
                 onClick={(e) => handleSizeSelection(e, index)}
               >
@@ -108,9 +121,12 @@ export default function ItemDetails() {
         <div
           className={styles.addToCart}
           onClick={() => {
+            console.log('ITEM: ', item)
             if (item) {
               addItem(item);
               openCart();
+            } else {
+              console.log('problem here')
             }
           }}
         >ADD TO CART

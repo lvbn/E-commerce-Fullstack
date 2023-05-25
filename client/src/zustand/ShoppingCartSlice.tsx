@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { CartItemType, Product } from '../models/models'
+import { CartItemType } from '../models/models'
 
 type ShoppingCartState = {
   isOpen: boolean,
@@ -7,10 +7,10 @@ type ShoppingCartState = {
 }
 
 type ShoppingCartAction = {
-  addItem: (newItem: Product) => void
+  addItem: (newItem: CartItemType) => void
   increaseQuantity: (newItem: CartItemType) => void
   decreaseQuantity: (existingItem: CartItemType) => void
-  removeFromCart: (existingItemID: number) => void
+  removeFromCart: (existingItemID: string) => void
   toggleCart: () => void
   openCart: () => void
   closeCart: () => void
@@ -22,7 +22,7 @@ export const useCartSlice = create<ShoppingCartState & ShoppingCartAction>()((se
 
   addItem: (newItem) => set((state) => {
     // if there is no such item in the cart yet
-    if (state.cartItems.find(item => item.id === newItem.id) == null) {
+    if (state.cartItems.find(item => item._id === newItem._id) == null) {
       return { cartItems: [...state.cartItems, { ...newItem, quantity: 1 }] }
     } else {
       return { cartItems: [...state.cartItems] }
@@ -33,7 +33,7 @@ export const useCartSlice = create<ShoppingCartState & ShoppingCartAction>()((se
 
     const newState = state.cartItems.map(item => {
       // if the item does exist in the cart
-      if (existingItem.quantity && item.id === existingItem?.id) {
+      if (existingItem.quantity && item._id === existingItem?._id) {
         return { ...existingItem, quantity: existingItem.quantity + 1 }
       } else {
         return item
@@ -46,12 +46,12 @@ export const useCartSlice = create<ShoppingCartState & ShoppingCartAction>()((se
   decreaseQuantity: (existingItem) => set((state) => {
     // if there is no such item in the cart yet
     if (state.cartItems.find(item => item === existingItem)?.quantity === 1) {
-      return { cartItems: state.cartItems.filter(item => item.id != existingItem.id) }
+      return { cartItems: state.cartItems.filter(item => item._id != existingItem._id) }
     }
     else {
       const newState = state.cartItems.map(item => {
         // if the item does exist in the cart
-        if (existingItem.quantity && item.id === existingItem?.id) {
+        if (existingItem.quantity && item._id === existingItem?._id) {
           return { ...existingItem, quantity: existingItem.quantity - 1 }
         } else {
           return item
@@ -62,7 +62,7 @@ export const useCartSlice = create<ShoppingCartState & ShoppingCartAction>()((se
   }),
 
   removeFromCart: (existingItemID) => set((state) => {
-    return { cartItems: state.cartItems.filter(item => item.id != existingItemID) }
+    return { cartItems: state.cartItems.filter(item => item._id != existingItemID) }
   }),
 
   toggleCart: () => set((state) => {

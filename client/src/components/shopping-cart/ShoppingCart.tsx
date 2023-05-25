@@ -33,6 +33,22 @@ export default function ShoppingCart() {
   const isOpen = useCartSlice((state) => state.isOpen)
   const closeCart = useCartSlice((state) => state.closeCart)
 
+  // // URL query and fetch the DB
+  // const [products, setProducts] = useState<Product[]>([])
+
+  // useEffect(() => {
+
+  //   const fectchProductsBySellerId = async () => {
+  //     const res = await getProductsBySellerId({sellerId: '646d3615ee38ef18f3490506'})
+  //     // console.log('My Products Screen: ', res)
+  //     if (res !== undefined) {
+  //       setProducts(res)
+  //     }
+  //   }
+
+  //   fectchProductsBySellerId()
+  // }, [])
+
   return (
     <>
       {isOpen &&

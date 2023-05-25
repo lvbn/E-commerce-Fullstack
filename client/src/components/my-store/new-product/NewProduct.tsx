@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { postProduct } from '../../../services/products-service'
 
 import { motion } from "framer-motion";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-import Checkbox from '@mui/material/Checkbox';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
+// import Checkbox from '@mui/material/Checkbox';
+// import FormGroup from '@mui/material/FormGroup';
+// import FormControlLabel from '@mui/material/FormControlLabel';
 
 import toast, { Toaster } from 'react-hot-toast';
 

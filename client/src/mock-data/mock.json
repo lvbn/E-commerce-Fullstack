@@ -1,103 +1,136 @@
 {
   "products": [
     {
-      "id": 1,
+      "id": "1",
+      "productId": 1,
       "name": "Classic T-Shirt",
-      "color": "White",
-      "size": "S",
-      "price": 19.99,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "image": "https://example.com/classic_tshirt.jpg"
+      "price": 19.99,
+      "quantity": 1,
+      "sizes": ["S", "M", "L", "XL"],
+      "image": ["https://example.com/classic_tshirt.jpg"],
+      "selectedSize": "S",
+      "selectedQuantity:": 1
     },
     {
-      "id": 2,
+      "id": "2",
+      "productId": 2,
       "name": "Classic T-Shirt",
-      "color": "Black",
-      "size": "M",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "price": 19.99,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "image": "https://example.com/classic_tshirt.jpg"
+      "quantity": 1,
+      "sizes": ["S", "M", "L", "XL"],
+      "image": ["https://example.com/classic_tshirt.jpg"],
+      "selectedSize": "M",
+      "selectedQuantity:": 1
     },
     {
-      "id": 3,
+      "id": "3",
+      "productId": 3,
       "name": "V-Neck T-Shirt",
-      "color": "Grey",
-      "size": "L",
-      "price": 24.99,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "image": "https://example.com/vneck_tshirt.jpg"
+      "price": 24.99,
+      "quantity": 1,
+      "sizes": ["S", "M", "L", "XL"],
+      "image": ["https://example.com/vneck_tshirt.jpg"],
+      "selectedSize": "L",
+      "selectedQuantity:": 1
     },
     {
-      "id": 4,
+      "id": "4",
+      "productId": 4,
       "name": "V-Neck T-Shirt",
-      "color": "Black",
-      "size": "S",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "price": 24.99,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "image": "https://example.com/vneck_tshirt.jpg"
+      "quantity": 1,
+      "sizes": ["S", "M", "L", "XL"],
+      "image": ["https://example.com/vneck_tshirt.jpg"],
+      "selectedSize": "S",
+      "selectedQuantity:": 1
     },
     {
-      "id": 5,
+      "id": "5",
+      "productId": 5,
       "name": "Graphic T-Shirt",
-      "color": "Navy",
-      "size": "M",
-      "price": 29.99,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "image": "https://example.com/graphic_tshirt.jpg"
+      "price": 29.99,
+      "quantity": 1,
+      "sizes": ["S", "M", "L", "XL"],
+      "image": ["https://example.com/graphic_tshirt.jpg"],
+      "selectedSize": "M",
+      "selectedQuantity:": 1
     },
     {
-      "id": 6,
+      "id": "6",
+      "productId": 6,
       "name": "Graphic T-Shirt",
-      "color": "White",
-      "size": "L",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "price": 29.99,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "image": "https://example.com/graphic_tshirt.jpg"
+      "quantity": 1,
+      "sizes": ["S", "M", "L", "XL"],
+      "image": ["https://example.com/graphic_tshirt.jpg"],
+      "selectedSize": "L",
+      "selectedQuantity:": 1
     },
     {
-      "id": 7,
+      "id": "7",
+      "productId": 7,
       "name": "Striped T-Shirt",
-      "color": "Black/White",
-      "size": "XL",
-      "price": 34.99,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "image": "https://example.com/striped_tshirt.jpg"
+      "price": 34.99,
+      "quantity": 1,
+      "sizes": ["S", "M", "L", "XL"],
+      "image": ["https://example.com/striped_tshirt.jpg"],
+      "selectedSize": "XL",
+      "selectedQuantity:": 1
     },
     {
-      "id": 8,
+      "id": "8",
+      "productId": 8,
       "name": "Striped T-Shirt",
-      "color": "Red/White",
-      "size": "S",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       "price": 34.99,
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "image": "https://example.com/striped_tshirt.jpg"
+      "quantity": 1,
+      "sizes": ["S", "M", "L", "XL"],
+      "image": ["https://example.com/striped_tshirt.jpg"],
+      "selectedSize": "S",
+      "selectedQuantity:": 1
     },
     {
-      "id": 9,
+      "id": "9",
+      "productId": 9,
       "name": "Polo Shirt",
-      "color": "Navy",
-      "size": "M",
-      "price": 39.99,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "image": "https://example.com/polo_shirt.jpg"
+      "price": 39.99,
+      "quantity": 1,
+      "sizes": ["S", "M", "L", "XL"],
+      "image": ["https://example.com/polo_shirt.jpg"],
+      "selectedSize": "M",
+      "selectedQuantity:": 1
     },
     {
-      "id": 10,
+      "id": "10",
+      "productId": 10,
       "name": "Polo Shirt",
-      "color": "White",
-      "size": "L",
-      "price": 39.99,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "image": "https://example.com/polo_shirt.jpg"
+      "price": 39.99,
+      "quantity": 1,
+      "sizes": ["S", "M", "L", "XL"],
+      "image": ["https://example.com/polo_shirt.jpg"],
+      "selectedSize": "L",
+      "selectedQuantity:": 1
     },
     {
-      "id": 11,
+      "id": "11",
+      "productId": 11,
       "name": "Henley Shirt",
-      "color": "Grey",
-      "size": "XL",
-      "price": 44.99,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      "image": "https://example.com/henley_shirt.jpg"
+      "price": 44.99,
+      "quantity": 1,
+      "sizes": ["S", "M", "L", "XL"],
+      "image": ["https://example.com/henley_shirt.jpg"],
+      "selectedSize": "XL",
+      "selectedQuantity:": 1
     }
   ]
 }

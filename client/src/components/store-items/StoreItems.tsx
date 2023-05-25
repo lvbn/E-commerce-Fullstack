@@ -40,7 +40,7 @@ export default function StoreItems({products}: { products: Product[] }) {
       >
         {
           products.map((product) => (
-            <motion.li key={product.productId} variants={item}>
+            <motion.li key={product._id} variants={item}>
               <StoreItem
                 product={product}
               />
