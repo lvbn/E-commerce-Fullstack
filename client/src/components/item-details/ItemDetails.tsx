@@ -134,7 +134,8 @@ export default function ItemDetails() {
           }
         </div>
 
-        <div
+        <motion.div
+        whileTap={{ scale: 0.97 }}
           className={styles.addToCart}
           onClick={() => {
             console.log('ITEM: ', item, product)
@@ -149,7 +150,7 @@ export default function ItemDetails() {
             }
           }}
         >ADD TO CART
-        </div>
+        </motion.div>
       </div>
 
     </motion.div>

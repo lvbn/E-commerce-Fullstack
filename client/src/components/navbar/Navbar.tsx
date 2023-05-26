@@ -5,6 +5,8 @@ import { useCartSlice } from '../../zustand/ShoppingCartSlice'
 import { useMenuSlice } from '../../zustand/MenuSlice'
 import Menu from '../menu/Menu'
 
+import { motion } from "framer-motion";
+
 export default function Navbar() {
 
   const navigate = useNavigate()
@@ -42,12 +44,13 @@ export default function Navbar() {
             alt="logo"
             onClick={toggleCart}
           />
-          <div
+          <motion.div
+            whileTap={{ scale: 0.9 }}
             className={styles.userThumbnail}
             onClick={toggleMenu}
           >
           {isOpen && <Menu />}
-          </div>
+          </motion.div>
         </div>
 
       </div>

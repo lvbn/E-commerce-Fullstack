@@ -8,6 +8,8 @@ primary_region = "gru"
 
 [env]
   PORT = "8080"
+  DB_CONN_STRING="mongodb+srv://luiznetov:aafBeKd9GfEymwnc@e-commerce.ephpd1z.mongodb.net/e-commerce?retryWrites=true&w=majority"
+  DB_NAME="e-commerce"
 
 [http_service]
   internal_port = 8080

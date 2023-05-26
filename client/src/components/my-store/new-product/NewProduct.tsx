@@ -159,20 +159,22 @@ export default function NewProduct() {
 
         <div className={styles.buttons}>
 
-          <button
+          <motion.button
+            whileTap={{ scale: 0.99 }}
             type='button'
             className={styles.cancelButton}
             onClick={() => navigate('/orders')}
           >
             Cancel
-          </button>
+          </motion.button>
 
-          <button
+          <motion.button
+            whileTap={{ scale: 0.99 }}
             type='submit'
             className={styles.addButton}
           >
             Add Product
-          </button>
+          </motion.button>
 
         </div>
       </form>
