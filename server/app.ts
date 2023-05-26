@@ -9,7 +9,8 @@ import routerRoutes from './routers/index';
 
 export const app = express()
 // export const port = 3000;
-export const port = process.env.PORT
+// export const port = process.env.PORT
+export const port = process.env.PORT || "8080";
 
 const corsOptions = {
   origin: "*",
