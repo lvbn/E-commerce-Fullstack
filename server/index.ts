@@ -5,7 +5,7 @@ import run from './database/db'
 
   run().catch(err => console.log(err));
 
-  app.listen(port, async () => {
+  app.listen(8080, '0.0.0.0', async () => {
     console.log(`✅ Server running on http://localhost:${port}/  🚀`)
   })
 

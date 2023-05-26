@@ -1,6 +1,7 @@
 {
+
   "scripts": {
-    "start:prod": "node build/server.js"
+    "start": "npx ts-node --esm index.ts"
   },
   "dependencies": {
     "@types/express": "^4.17.17",
