@@ -30,11 +30,10 @@ export const useCartSlice = create<ShoppingCartState & ShoppingCartAction>()((se
   }),
 
   increaseQuantity: (existingItem) => set((state) => {
-
     const newState = state.cartItems.map(item => {
       // if the item does exist in the cart
-      if (existingItem.quantity && item._id === existingItem?._id) {
-        return { ...existingItem, quantity: existingItem.quantity + 1 }
+      if (existingItem.selectedQuantity && item._id === existingItem?._id) {
+        return { ...existingItem, selectedQuantity: existingItem.selectedQuantity }
       } else {
         return item
       }
@@ -52,7 +51,7 @@ export const useCartSlice = create<ShoppingCartState & ShoppingCartAction>()((se
       const newState = state.cartItems.map(item => {
         // if the item does exist in the cart
         if (existingItem.quantity && item._id === existingItem?._id) {
-          return { ...existingItem, quantity: existingItem.quantity - 1 }
+          return { ...existingItem, quantity: existingItem.quantity }
         } else {
           return item
         }

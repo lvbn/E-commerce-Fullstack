@@ -4,9 +4,30 @@ import { useCartSlice } from '../../zustand/ShoppingCartSlice'
 import { CartItemType } from '../../models/models'
 import CartItem from '../cart-item/CartItem'
 
+import {
+  deleteCartProduct,
+  increaseCartProductQuantity,
+  decreaseCartProductQuantity,
+  getAllCartProductsByUser
+} from '../../services/shopping-cart-service'
+
 import { motion } from "framer-motion";
 import { useEffect } from 'react';
-import { getAllCartProductsByUser } from '../../services/shopping-cart-service';
+
+import toast, { Toaster } from 'react-hot-toast';
+
+const fail = () => toast.error('something went wrong... 😕 please try again.', {
+  style: {
+    border: '1px solid #BE0000',
+    backgroundColor: '#FDB6C1',
+    padding: '16px',
+    color: '#BE0000',
+  },
+  iconTheme: {
+    primary: '#BE0000',
+    secondary: '#FDB6C1',
+  },
+});
 
 const container = {
   hidden: { opacity: 0, scale: 0.99 },
@@ -31,17 +52,20 @@ const item = {
 };
 
 export default function ShoppingCart() {
+
   const cartItems = useCartSlice((state) => state.cartItems)
   const isOpen = useCartSlice((state) => state.isOpen)
   const closeCart = useCartSlice((state) => state.closeCart)
   const addItem = useCartSlice((state) => state.addItem)
+  const increaseQuantity = useCartSlice((state) => state.increaseQuantity)
+  const decreaseQuantity = useCartSlice((state) => state.decreaseQuantity)
+  const removeFromCart = useCartSlice((state) => state.removeFromCart)
 
 
   useEffect(() => {
 
     const fetchAllCartProductsByUser = async () => {
       const res = await getAllCartProductsByUser({userId: '646d4919d6085ae75cb0f64c'})
-      console.log('Shopping cart products by userID: ', res)
       if (res !== undefined) {
         res.forEach((product: CartItemType) => {
           addItem(product)
@@ -52,6 +76,42 @@ export default function ShoppingCart() {
     fetchAllCartProductsByUser()
   }, [])
 
+  const handleDelete = async (cartItemId: string) => {
+    const res =  await deleteCartProduct(cartItemId)
+
+    if (res) {
+      console.log('Response after delete from shopping cart', res)
+      removeFromCart(cartItemId)
+    } else {
+      fail()
+    }
+
+  }
+
+  const handleIncrease = async (cartItemId: string) => {
+    const res =  await increaseCartProductQuantity(cartItemId)
+
+    if (res) {
+      console.log('update successful', res)
+      increaseQuantity(res)
+    } else {
+      fail()
+    }
+
+  }
+
+  const handleDecrease = async (cartItemId: string) => {
+    const res =  await decreaseCartProductQuantity(cartItemId)
+
+    if (res) {
+      console.log('update successful', res)
+      decreaseQuantity(res)
+    } else {
+      fail()
+    }
+
+  }
+
   return (
     <>
       {isOpen &&
@@ -61,7 +121,7 @@ export default function ShoppingCart() {
           initial="hidden"
           animate="visible"
         >
-
+           <Toaster />
           <div className={styles.cartHeader}>
             <h1>Cart</h1>
             <motion.h1
@@ -84,7 +144,12 @@ export default function ShoppingCart() {
           >
             {cartItems.map((cartItem: CartItemType) => (
               <motion.li key={cartItem._id} variants={item}>
-                <CartItem cartItem={cartItem} />
+                <CartItem
+                  cartItem={cartItem}
+                  handleDelete={handleDelete}
+                  handleIncrease={handleIncrease}
+                  handleDecrease={handleDecrease}
+                />
               </motion.li>
             ))}
           </motion.ul>

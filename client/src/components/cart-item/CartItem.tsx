@@ -2,10 +2,23 @@ import styles from './CartItem.module.css'
 import { CartItemType } from '../../models/models'
 import { useCartSlice } from '../../zustand/ShoppingCartSlice'
 
-export default function CartItem ({cartItem}: {cartItem: CartItemType}) {
+// type cartFunctions = {
+//   handleDelete: (cartItemId: string) => void;
+// };
+
+// {cartItem}: {cartItem: CartItemType}
+
+interface Props {
+  cartItem: CartItemType;
+  handleDelete: (cartItemId: string) => void;
+  handleIncrease: (cartItemId: string) => void;
+  handleDecrease: (cartItemId: string) => void;
+}
+
+export default function CartItem ({ cartItem, handleDelete, handleIncrease, handleDecrease }: Props) {
+
   const increaseQuantity = useCartSlice((state) => state.increaseQuantity)
   const decreaseQuantity = useCartSlice((state) => state.decreaseQuantity)
-  const removeFromCart = useCartSlice((state) => state.removeFromCart)
 
   return (
     <div className={styles.container}>
@@ -21,19 +34,22 @@ export default function CartItem ({cartItem}: {cartItem: CartItemType}) {
         <div className={styles.right}>
           <p
             className={styles.decrease}
-            onClick={() => decreaseQuantity(cartItem)}
+            // onClick={() => decreaseQuantity(cartItem)}
+            onClick={() => handleDecrease(cartItem._id)}
           >-</p>
           <p className={styles.size}>{cartItem.selectedQuantity}</p>
           <p
             className={styles.increase}
-            onClick={() => increaseQuantity(cartItem)
+            // onClick={() => increaseQuantity(cartItem)
+            onClick={() => handleIncrease(cartItem._id)
             }
           >+</p>
         </div>
 
         <p
           className={styles.delete}
-          onClick={() => removeFromCart(cartItem._id)}
+          // onClick={() => removeFromCart(cartItem._id)}
+          onClick={() => handleDelete(cartItem._id)}
         >+</p>
 
       </div>

@@ -41,6 +41,8 @@ export default function ItemDetails() {
     quantity: 0,
     sizes: [],
     image: [],
+
+    userId: '',
     selectedQuantity: 0,
     selectedSize: 'M'
   })
@@ -63,8 +65,8 @@ export default function ItemDetails() {
     const res = await postCartProduct(item)
 
     if (res) {
-      // console.log('RES: ', res)
-      addItem(item);
+      // console.log('RES - ItemDetails.tsx: ', res)
+      addItem(res);
       openCart()
     } else {
       // add toast here
@@ -79,11 +81,15 @@ export default function ItemDetails() {
     })
 
     const selectedSize = e.currentTarget.textContent as ProductSize
-    const cartItem = {...product, selectedSize: selectedSize, selectedQuantity: 1, userId: '646d4919d6085ae75cb0f64c'}
+    const cartItem = {
+      ...product,
+      selectedSize: selectedSize,
+      selectedQuantity: 1,
+      userId: '646d4919d6085ae75cb0f64c'
+    }
     setItem({
       ...item, ...cartItem
     })
-
   }
 
   const activeClass = (index: number) => {
@@ -138,7 +144,7 @@ export default function ItemDetails() {
         whileTap={{ scale: 0.97 }}
           className={styles.addToCart}
           onClick={() => {
-            console.log('ITEM: ', item, product)
+            // console.log('ITEM: ', item, product)
             if (item) {
               // addItem(item);
               handleAddToCart(item)

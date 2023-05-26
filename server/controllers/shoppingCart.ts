@@ -19,11 +19,12 @@ export const postOneCartProduct = async (req, res) => {
       selectedQuantity: req.body.selectedQuantity
     })
 
-    await product.save()
+  const savedProduct =  await product.save()
+  // console.log('saved to the cart - controller: ', savedProduct)
 
-    if (product) {
+    if (savedProduct) {
       res.status(200)
-      res.json(product)
+      res.json(savedProduct)
     }
   } catch (error) {
     res.status(404)
@@ -34,7 +35,7 @@ export const postOneCartProduct = async (req, res) => {
 
 export const getShoppingCartByUser = async (req, res) => {
   const userId = req.params
-  console.log(userId)
+  // console.log('GET SC PRODUCTS - ID - CONTROLLER: ', userId)
 
   try {
     const products = await CartProduct.find({
@@ -64,20 +65,73 @@ export const getShoppingCartByUser = async (req, res) => {
 
 export const deleteProductFromShoppingCart = async (req, res) => {
   const product_id = req.params
-  console.log('deleting from shoppingcart: ', product_id)
-
+  // console.log('PRODUCT ID RECEIVED IN THE CONTROLLER: ', product_id)
   try {
     const product = await CartProduct.deleteOne({
       // userId: req.body.userId
       _id: product_id.id
     })
-
+    // console.log('product remove - controller: ', product)
     if (product.deletedCount === 1) {
       res.status(200)
-      res.send('deleted succesfully')
+      res.json('deleted succesfully')
     } else {
       res.status(400)
-      res.send('problem while deleting')
+      res.json('no such item in the cart')
+    }
+
+  } catch (error) {
+    res.status(404)
+    res.json(error)
+  }
+}
+
+export const increaseQuantity = async (req, res) => {
+  const _id = req.params
+  const filter = { _id: _id.id}
+  const update = { 'selectedQuantity': 1}
+  // console.log('PRODUCT ID RECEIVED IN THE CONTROLLER: ', product_id)
+  try {
+    const product = await CartProduct.findOneAndUpdate(
+      { _id: _id.id },
+      { $inc: {'selectedQuantity': 1 } },
+      {new: true }
+    )
+
+    // console.log('increae quantity - controller: ', product)
+    if (product) {
+      res.status(200)
+      res.send(product)
+    } else {
+      res.status(400)
+      res.json('problem while updating')
+    }
+
+  } catch (error) {
+    res.status(404)
+    res.json(error)
+  }
+}
+
+export const decreaseQuantity = async (req, res) => {
+  const _id = req.params
+  const filter = { _id: _id.id}
+  const update = { 'selectedQuantity': -1}
+  // console.log('PRODUCT ID RECEIVED IN THE CONTROLLER: ', product_id)
+  try {
+    const product = await CartProduct.findOneAndUpdate(
+      { _id: _id.id },
+      { $inc: {'selectedQuantity': -1 } },
+      { new: true }
+    )
+
+    // console.log('decreae quantity - controller: ', product)
+    if (product) {
+      res.status(200)
+      res.send(product)
+    } else {
+      res.status(400)
+      res.json('problem while updating')
     }
 
   } catch (error) {
