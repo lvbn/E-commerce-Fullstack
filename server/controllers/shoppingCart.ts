@@ -61,3 +61,27 @@ export const getShoppingCartByUser = async (req, res) => {
     res.json(error)
   }
 }
+
+export const deleteProductFromShoppingCart = async (req, res) => {
+  const product_id = req.params
+  console.log('deleting from shoppingcart: ', product_id)
+
+  try {
+    const product = await CartProduct.deleteOne({
+      // userId: req.body.userId
+      _id: product_id.id
+    })
+
+    if (product.deletedCount === 1) {
+      res.status(200)
+      res.send('deleted succesfully')
+    } else {
+      res.status(400)
+      res.send('problem while deleting')
+    }
+
+  } catch (error) {
+    res.status(404)
+    res.json(error)
+  }
+}
