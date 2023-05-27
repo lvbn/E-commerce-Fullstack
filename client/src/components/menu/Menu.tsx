@@ -40,7 +40,7 @@ export default function Menu() {
       animate="visible"
     >
 
-      <motion.div className={styles.menuItem} variants={item} onClick={() => navigate('/login')}>
+      <motion.div whileHover={{ scale: 1.05 }} className={styles.menuItem} variants={item} onClick={() => navigate('/login')}>
         <img
           src={UserIcon}
           className={styles.cartItemsIcon}
@@ -49,7 +49,7 @@ export default function Menu() {
         <p>log in</p>
       </motion.div>
 
-      <motion.div className={styles.menuItem} variants={item} >
+      <motion.div whileHover={{ scale: 1.05 }} className={styles.menuItem} variants={item} >
         <img
           src={FavoritesIcon}
           className={styles.cartItemsIcon}
@@ -59,7 +59,7 @@ export default function Menu() {
         <p>favorites</p>
       </motion.div>
 
-      <motion.div className={styles.menuItem} variants={item} onClick={() => navigate('/mystore/products')}>
+      <motion.div whileHover={{ scale: 1.05 }} className={styles.menuItem} variants={item} onClick={() => navigate('/mystore/products')}>
       <img
             src={MyStore}
             className={styles.cartItemsIcon}
@@ -68,7 +68,7 @@ export default function Menu() {
         <p>my store</p>
       </motion.div>
 
-      <motion.div className={styles.menuItem} variants={item}>
+      <motion.div whileHover={{ scale: 1.05 }} className={styles.menuItem} variants={item}>
       <img
             src={Configuraitons}
             className={styles.cartItemsIcon}
@@ -78,7 +78,7 @@ export default function Menu() {
         <p>configurations</p>
       </motion.div>
 
-      <motion.div className={styles.menuItem} variants={item}>
+      <motion.div whileHover={{ scale: 1.05 }} className={styles.menuItem} variants={item}>
       <img
             src={Logout}
             className={styles.cartItemsIcon}
