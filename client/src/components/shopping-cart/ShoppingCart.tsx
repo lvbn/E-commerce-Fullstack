@@ -103,9 +103,12 @@ export default function ShoppingCart() {
   const handleDecrease = async (cartItemId: string) => {
     const res =  await decreaseCartProductQuantity(cartItemId)
 
-    if (res) {
-      console.log('update successful', res)
+    if (res && res !== 'deleted succesfully') {
+      console.log('decreased quantity successful', res)
       decreaseQuantity(res)
+    } else if (res && res === 'deleted succesfully') {
+      console.log('deleted last item successful', res)
+      removeFromCart(cartItemId)
     } else {
       fail()
     }

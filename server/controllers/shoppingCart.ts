@@ -126,9 +126,17 @@ export const decreaseQuantity = async (req, res) => {
     )
 
     // console.log('decreae quantity - controller: ', product)
+
     if (product) {
-      res.status(200)
-      res.send(product)
+      // console.log('Product: : ', product.selectedQuantity)
+      if (product.selectedQuantity === 0) {
+        // delete product from shopping cart
+        // console.log('SELECTED QTTY: ', product.selectedQuantity)
+        deleteProductFromShoppingCart(req, res)
+      } else {
+        res.status(200)
+        res.send(product)
+      }
     } else {
       res.status(400)
       res.json('problem while updating')
