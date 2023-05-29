@@ -23,7 +23,7 @@ export default function Navbar() {
 
         <h1
           className={styles.navbarLeft}
-          onClick={() => navigate('./products')}
+          onClick={() => navigate('/products')}
         >E-COMMERCE
         </h1>
 
