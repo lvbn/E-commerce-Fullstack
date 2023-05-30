@@ -40,7 +40,7 @@ export default function ItemDetails() {
     price: 0,
     quantity: 0,
     sizes: [],
-    image: [],
+    imgUrl: [],
 
     userId: '',
     selectedQuantity: 0,
@@ -110,12 +110,14 @@ export default function ItemDetails() {
 
       {/* LEFT */}
       <div className={styles.left}>
-        <div className={styles.mainImage}></div>
-        <div className={styles.sideImages}>
-          <div className={styles.sideImage}></div>
-          <div className={styles.sideImage}></div>
-          <div className={styles.sideImage}></div>
+        <div className={styles.mainImage}>
+          <img src={product?.imgUrl[0]}></img>
         </div>
+        {/* <div className={styles.sideImages}>
+          <div className={styles.sideImage}></div>
+          <div className={styles.sideImage}></div>
+          <div className={styles.sideImage}></div>
+        </div> */}
       </div>
 
 

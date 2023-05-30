@@ -10,7 +10,7 @@ export interface Product {
   price: number
   quantity: number
   sizes: string[]
-  image: string[]
+  imgUrl: string[]
 }
 
 export interface CartItemType extends Product {

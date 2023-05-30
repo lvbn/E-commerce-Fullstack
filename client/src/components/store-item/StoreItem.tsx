@@ -18,10 +18,11 @@ export default function StoreItem({product}: Props) {
         className={styles.img}
         // onClick={() => navigate(`./${product.id}`)}
         onClick={() => {
-
           navigate(`./${product._id}`)
         }}
-      ></div>
+      >
+        <img src={product.imgUrl[0]}></img>
+      </div>
       <p>{product.name}</p>
       <p>{product.price}</p>
       {/* <img src={image}></img> */}
