@@ -28,6 +28,17 @@
   background-color: #7daf9d;
 }
 
+.img > img {
+  height: 100px;
+  width: 100px;
+  min-width: 100px;
+
+  border-radius: 4px;
+  object-fit: cover;
+
+  background-color: #7daf9d;
+}
+
 .right {
   display: flex;
   justify-content: space-between;

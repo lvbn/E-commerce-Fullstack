@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { postProduct } from '../../../services/products-service'
 
 import { motion } from "framer-motion";
-import { SetStateAction, useState } from 'react';
+import { useState } from 'react';
 
 import toast, { Toaster } from 'react-hot-toast';
 import { useProductsSlice } from '../../../zustand/ProductsSlice';
@@ -52,13 +52,11 @@ const container = {
 
 export default function NewProduct() {
 
-  const [img, setImg] = useState()
-  // const [img, setImg] = useState<File[]>([])
-
   const navigate = useNavigate()
 
   const addItem = useProductsSlice((state) => state.addItem)
 
+  const [img, setImg] = useState()
   const [sizes, setSizes] = useState<string[]>([]);
   const [state, setState] = useState({
     sellerId: '646d3615ee38ef18f3490506',
@@ -88,7 +86,7 @@ export default function NewProduct() {
   }
 
   const handleFileSelection = async (files: FileList | null) => {
-    // const target = e.target as HTMLInputElement;
+
     if (files) {
 
       const imageUrl = await postImage(files[0])

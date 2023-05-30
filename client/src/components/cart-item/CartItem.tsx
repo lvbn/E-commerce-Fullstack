@@ -23,7 +23,9 @@ export default function CartItem ({ cartItem, handleDelete, handleIncrease, hand
   return (
     <div className={styles.container}>
       <div className={styles.itemInfo}>
-        <div className={styles.img}></div>
+        <div className={styles.img}>
+          <img src={cartItem.imgUrl[0]}></img>
+        </div>
 
         <div className={styles.left}>
           <p className={styles.name}>{cartItem.name}</p>
