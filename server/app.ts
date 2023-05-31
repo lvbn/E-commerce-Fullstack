@@ -1,6 +1,7 @@
 // set up a Express + TS server:
 // https://www.digitalocean.com/community/tutorials/setting-up-a-node-project-with-typescript
 
+export const stripe = require('stripe')('sk_test_51N8hjDJKkXA9mV6apEXVLA7cSwFX08ThCvmgeiduWpUZSFfAfQhR9Qnr2cfHh2SLJHunxIUoSS31fEBR5d6hlsnW00DqapAgUi');
 import express from 'express'
 import cors from 'cors'
 require('dotenv').config();

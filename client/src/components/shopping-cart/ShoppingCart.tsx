@@ -11,10 +11,13 @@ import {
   getAllCartProductsByUser
 } from '../../services/shopping-cart-service'
 
+import { useStripe } from '@stripe/react-stripe-js';
+
 import { motion } from "framer-motion";
 import { useEffect } from 'react';
 
 import toast, { Toaster } from 'react-hot-toast';
+import { checkout } from '../../services/stripe-service'
 
 const fail = () => toast.error('something went wrong... 😕 please try again.', {
   style: {
@@ -60,7 +63,7 @@ export default function ShoppingCart() {
   const increaseQuantity = useCartSlice((state) => state.increaseQuantity)
   const decreaseQuantity = useCartSlice((state) => state.decreaseQuantity)
   const removeFromCart = useCartSlice((state) => state.removeFromCart)
-
+  const stripe = useStripe();
 
   useEffect(() => {
 
@@ -113,6 +116,12 @@ export default function ShoppingCart() {
       fail()
     }
 
+  }
+
+  const handleSubmit = async (cartItems: CartItemType[]) => {
+    const session = await checkout(cartItems)
+    console.log('SESSION: ', session)
+    stripe?.redirectToCheckout({ sessionId: session.id})
   }
 
   return (
@@ -169,7 +178,12 @@ export default function ShoppingCart() {
               </h3>
             </div>
 
-            <div className={styles.checkout}>
+            {/* <div className={styles.checkout} onClick={() => handleSubmit(cartItems.reduce((total, cartItem) => {
+                  return total + (cartItem.price * cartItem.selectedQuantity)
+                }, 0))}>
+              <h3>Checkout</h3>
+            </div> */}
+            <div className={styles.checkout} onClick={() => handleSubmit(cartItems)}>
               <h3>Checkout</h3>
             </div>
           </div>

@@ -5,6 +5,14 @@ import Navbar from "./components/navbar/Navbar";
 import ShoppingCart from "./components/shopping-cart/ShoppingCart";
 import { useEffect } from "react";
 import { useMenuSlice } from "./zustand/MenuSlice";
+
+//// STRIPE
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+// import Success from "./components/after-checkout/success";
+// import Fail from "./components/after-checkout/fail";
+const stripePromise = loadStripe('pk_test_51N8hjDJKkXA9mV6ak5ut2w6TuNdUKdu9jIaUbFf8ttSFyaOAgLZD7EjFPY7i9ABX5zPEBVUNeluE8z0qiWP75qv400RR6hD0bp');
+
 // import { useCartSlice } from "./zustand/ShoppingCartSlice";
 
 function App() {
@@ -53,6 +61,7 @@ function App() {
 
   return (
     <>
+    <Elements stripe={stripePromise}>
       <Navbar />
       <ShoppingCart />
       <div
@@ -64,6 +73,7 @@ function App() {
       >
         <Outlet />
       </div>
+      </Elements>
     </>
   );
 }
