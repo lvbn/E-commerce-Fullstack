@@ -1,76 +1,15 @@
-// import { Request, Response } from "express";
-// import { stripe } from "../app";
-
-// const checkout = async (priceId) => {
-//   const SUCCESS_DOMAIN = 'http://localhost:5173/'
-//   const FAIL_DOMAIN = 'http://localhost:5173/checkoutfail'
-
-//   try {
-//     const session = await stripe.checkout.sessions.create({
-//       line_items: [
-//         {
-//           price: priceId,
-//           quantity: 3,
-//         },
-//       ],
-//       mode: 'payment',
-
-//       success_url: `${SUCCESS_DOMAIN}?success=true`,
-//       cancel_url: `${FAIL_DOMAIN}?canceled=true`,
-//     });
-
-//     // res.json(session);
-//     return session
-//   } catch (error) {
-//     console.log(error)
-//     // res.json('error on checkout')
-//     return 'error on checkout'
-//   }
-// }
-
-// const price = async (productPrice) => {
-//   try {
-//     const price = await stripe.prices.create({
-//       unit_amount: productPrice,
-//       currency: 'usd',
-//       product_data: {
-//         name: 'testing product'
-//       }
-//     });
-
-//     return price
-//   } catch (error) {
-//     return 'error on price'
-//   }
-// }
-
-// export async function  stripeCheckout(req: Request, res: Response) {
-//   const priceRes = await price(req.body.price)
-//   const checkoutRes = await checkout(priceRes.id)
-//   res.json(checkoutRes)
-// }
-
-
-
-
-
 
 
 import { Request, Response } from "express";
 import { stripe } from "../app";
 
-const payment = async (priceId) => {
+const payment = async (productsArray) => {
   const SUCCESS_DOMAIN = 'http://localhost:5173/'
   const FAIL_DOMAIN = 'http://localhost:5173/checkoutfail'
 
   try {
     const session = await stripe.checkout.sessions.create({
-      line_items: [
-        {
-          price: priceId,
-          quantity: 3,
-        },
-      ],
+      line_items: productsArray,
       mode: 'payment',
 
       success_url: `${SUCCESS_DOMAIN}?success=true`,
@@ -78,6 +17,7 @@ const payment = async (priceId) => {
     });
 
     // res.json(session);
+    // console.log('we have come this far', session)
     return session
   } catch (error) {
     console.log(error)
@@ -86,13 +26,13 @@ const payment = async (priceId) => {
   }
 }
 
-const price = async (productPrice: number) => {
+const price = async (product: {price: number, name: string}) => {
   try {
     const price = await stripe.prices.create({
-      unit_amount: productPrice,
+      unit_amount: product.price,
       currency: 'usd',
       product_data: {
-        name: 'testing product'
+        name: product.name
       }
     });
 
@@ -103,14 +43,33 @@ const price = async (productPrice: number) => {
 }
 
 export const  stripeCheckout = async(req: Request, res: Response) => {
-  const priceObj = await price(req.body.price)
-  const checkoutObj = await payment(priceObj.id)
-  res.send(checkoutObj)
+
+  const cartItems = req.body.cartItems
+  // console.log('BODY: ', cartItems)
+  const productsArray = []
+
+  const prices = cartItems.map(async (item) => {
+    return await price({price: item.price, name: item.name})
+    // const checkoutObj = await payment(priceObj.id)
+  })
+
+  Promise.allSettled(prices)
+  .then(prices => {
+    // console.log('RESULT ALL PROMISES: ', prices)
+    prices.map(async (price, index) => {
+      if (price.status === 'fulfilled') {
+        productsArray.push({
+          price: price.value.id,
+          quantity: cartItems[index].selectedQuantity,
+        })
+      }
+    })
+  })
+  .then(async () => {
+    const session = await payment(productsArray)
+    if (session) res.send(session)
+    else throw new Error('failed to generate new session')
+  })
+  .catch(error => console.log('ERROR: ', error))
+
 }
-
-
-// export async function  stripeCheckout(req: Request, res: Response) {
-//   const priceRes = await price(req.body.price)
-//   const checkoutRes = await checkout(priceRes.id)
-//   res.json(checkoutRes)
-// }

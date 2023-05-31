@@ -125,7 +125,7 @@ export default function ItemDetails() {
       <div className={styles.right}>
         <h1 className={styles.name}>{product?.name}</h1>
         <h4 className={styles.description}>{product?.description}</h4>
-        <h4 className={styles.price}>{product?.price}</h4>
+        <h4 className={styles.price}>{product?.price && (product?.price / 100).toFixed(2)}</h4>
 
         {/* https://www.youtube.com/watch?v=-Lx-YlI9hlY */}
         <div className={styles.sizes}>

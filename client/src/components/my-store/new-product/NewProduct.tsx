@@ -162,7 +162,7 @@ export default function NewProduct() {
 
         <div className={styles.formFields}>
           <div className={styles.leftSide}>
-            <label htmlFor='productId'>ID</label><br></br>
+            <label htmlFor='productId'>ID (numeric value)</label><br></br>
             <input type='number' id='productId' name='productId' value={state.productId} onChange={handleChange}></input><br></br>
 
             <label htmlFor='name'>Name</label><br></br>
@@ -171,7 +171,7 @@ export default function NewProduct() {
             <label htmlFor='description'>Description</label><br></br>
             <input type='textarea' id='description' name='description' value={state.description} onChange={handleChange}></input><br></br>
 
-            <label htmlFor='quantity'>Quantity</label><br></br>
+            <label htmlFor='quantity'>Quantity (numeric value)</label><br></br>
             <input type='number' id='quantity' name='quantity' value={state.quantity} onChange={handleChange}></input><br></br>
 
             <div className={styles.selectors}>
@@ -193,7 +193,7 @@ export default function NewProduct() {
 
             </div><br></br>
 
-            <label htmlFor='price'>Price</label><br></br>
+            <label htmlFor='price'>Price (without comma)</label><br></br>
             <input type='number' id='price' name='price' value={state.price} onChange={handleChange}></input>
 
           </div>

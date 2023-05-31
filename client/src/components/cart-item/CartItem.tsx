@@ -20,7 +20,7 @@ export default function CartItem ({ cartItem, handleDelete, handleIncrease, hand
         <div className={styles.left}>
           <p className={styles.name}>{cartItem.name}</p>
           <p className={styles.size}>{cartItem.selectedSize}</p>
-          <p className={styles.price}>{cartItem.price}</p>
+          <p className={styles.price}>{(cartItem.price / 100).toFixed(2)}</p>
         </div>
 
         <div className={styles.right}>

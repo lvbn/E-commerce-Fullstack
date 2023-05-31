@@ -16,6 +16,7 @@ import NewProduct from './components/my-store/new-product/NewProduct.tsx';
 import NewOrder from './components/my-store/new-order/NewOrder.tsx';
 import AllProductsScreen from './screens/all-products-screen/AllProductsScreen.tsx';
 import MyProductsScreen from './screens/my-products-screen/MyProductsScreen.tsx';
+import CheckoutFail from './components/checkout-fail/CheckoutFail.tsx';
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <Signup />,
+      },
+      {
+        path: "/checkoutfail",
+        element: <CheckoutFail />,
       },
       {
         path: "/mystore",

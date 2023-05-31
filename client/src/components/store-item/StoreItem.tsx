@@ -24,7 +24,7 @@ export default function StoreItem({product}: Props) {
         <img src={product.imgUrl[0]}></img>
       </div>
       <p>{product.name}</p>
-      <p>{product.price}</p>
+      <p>{(product.price / 100).toFixed(2)}</p>
       {/* <img src={image}></img> */}
     </div>
   )

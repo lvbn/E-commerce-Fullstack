@@ -172,17 +172,11 @@ export default function ShoppingCart() {
               <h3
                 className={styles.totalValue}
               >
-                {cartItems.reduce((total, cartItem) => {
+                {(cartItems.reduce((total, cartItem) => {
                   return total + (cartItem.price * cartItem.selectedQuantity)
-                }, 0)}
+                }, 0) / 100).toFixed(2)}
               </h3>
             </div>
-
-            {/* <div className={styles.checkout} onClick={() => handleSubmit(cartItems.reduce((total, cartItem) => {
-                  return total + (cartItem.price * cartItem.selectedQuantity)
-                }, 0))}>
-              <h3>Checkout</h3>
-            </div> */}
             <div className={styles.checkout} onClick={() => handleSubmit(cartItems)}>
               <h3>Checkout</h3>
             </div>
