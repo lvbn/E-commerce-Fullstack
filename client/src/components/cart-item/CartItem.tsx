@@ -1,12 +1,5 @@
 import styles from './CartItem.module.css'
 import { CartItemType } from '../../models/models'
-import { useCartSlice } from '../../zustand/ShoppingCartSlice'
-
-// type cartFunctions = {
-//   handleDelete: (cartItemId: string) => void;
-// };
-
-// {cartItem}: {cartItem: CartItemType}
 
 interface Props {
   cartItem: CartItemType;
@@ -16,9 +9,6 @@ interface Props {
 }
 
 export default function CartItem ({ cartItem, handleDelete, handleIncrease, handleDecrease }: Props) {
-
-  const increaseQuantity = useCartSlice((state) => state.increaseQuantity)
-  const decreaseQuantity = useCartSlice((state) => state.decreaseQuantity)
 
   return (
     <div className={styles.container}>
