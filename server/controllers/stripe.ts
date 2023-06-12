@@ -17,7 +17,7 @@ const payment = async (productsArray) => {
     });
 
     // res.json(session);
-    // console.log('we have come this far', session)
+    console.log('we have come this far', session)
     return session
   } catch (error) {
     console.log(error)
@@ -62,7 +62,7 @@ export const  stripeCheckout = async(req: Request, res: Response) => {
           price: price.value.id,
           quantity: cartItems[index].selectedQuantity,
         })
-      }
+      } // if it is not fulfilled should it throw an error?
     })
   })
   .then(async () => {
