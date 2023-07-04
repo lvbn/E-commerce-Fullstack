@@ -1,4 +1,4 @@
-# E-commerce Frontend
+# E-commerce Full Stack
 
 ![complete-flow](https://github.com/lvbn/E-commerce-frontend/assets/65773848/33c213ed-0df6-4c47-bdb7-a07808342aed)
 
