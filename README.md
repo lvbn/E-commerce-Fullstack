@@ -3,6 +3,7 @@
 ![complete-flow](https://github.com/lvbn/E-commerce-frontend/assets/65773848/33c213ed-0df6-4c47-bdb7-a07808342aed)
 
 ## Visit the application
+This is the showcase of the frontend. It is not connected to the backend. 
 https://646b443975ecde149a5927d4--e-commerce-fe.netlify.app
 
 ## About this project
