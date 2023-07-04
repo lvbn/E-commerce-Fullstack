@@ -34,9 +34,9 @@ Stripe
 
 ## Other Libraries
 
-CORS: handles cross-origin resource sharing
-dotenv: handles environmental variables
-nodemon: runs the server
+1. CORS: handles cross-origin resource sharing
+2. dotenv: handles environmental variables
+3. nodemon: runs the server
 
 ## Features
 
